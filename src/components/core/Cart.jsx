@@ -50,8 +50,8 @@ const Cart = () => {
       description="Manage your cart items. Add remove checkout or continue shopping."
       className="container-fluid"
     >
-      <section class="ftco-section">
-        <div class="container">
+      <section className="ftco-section">
+        <div className="container">
           <div className="row">
             <div className="col-6">
               {items.length > 0 ? showItems(items) : noItemsMessage()}

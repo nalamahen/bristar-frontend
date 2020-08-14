@@ -54,7 +54,7 @@ const Shop = (props) => {
       } else {
         setFilteredResults(response.data);
         setSize(response.size);
-        setSkip();
+        setSkip(0);
       }
     });
   };
@@ -62,7 +62,7 @@ const Shop = (props) => {
   const loadMore = () => {
     let toSkip = skip + limit;
     console.log('toSkip');
-    getFilteredProducts(skip, limit, myFilters.filters).then((response) => {
+    getFilteredProducts(toSkip, limit, myFilters.filters).then((response) => {
       if (response.error) {
         setError(response.error);
       } else {

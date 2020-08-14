@@ -16,6 +16,9 @@ const Topbar = ({ history }) => {
               </a>
             </p>
           </div>
+          {/* Search  */}
+
+          {/* End search  */}
           <div className="col-md-6 d-flex justify-content-md-end">
             <div className="social-media mr-4"></div>
             <div className="reg">

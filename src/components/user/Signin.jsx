@@ -79,42 +79,42 @@ const Signin = () => {
             <div className="col-xl-10">
               {showLoading()}
               {showError()}
-              <form action="#" class="billing-form">
-                <h3 class="mb-4 billing-heading">Signup</h3>
-                <div class="row align-items-end">
-                  <div class="col-md-12">
-                    <div class="form-group">
+              <form action="#" className="billing-form">
+                <h3 className="mb-4 billing-heading">Signup</h3>
+                <div className="row align-items-end">
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label for="emailaddress">Email Address</label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         onChange={handleChange('email')}
                         value={email}
                       />
                     </div>
                   </div>
 
-                  <div class="w-100"></div>
-                  <div class="col-md-12">
-                    <div class="form-group">
+                  <div className="w-100"></div>
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label for="emailaddress">Password</label>
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         onChange={handleChange('password')}
                         name="password"
                       />
                     </div>
                   </div>
 
-                  <div class="w-100"></div>
+                  <div className="w-100"></div>
                   <button
                     onClick={handleSubmit}
                     className="btn btn-primary py-3 px-4"
                   >
                     Submit
                   </button>
-                  <div class="w-100"></div>
+                  <div className="w-100"></div>
                 </div>
               </form>
             </div>

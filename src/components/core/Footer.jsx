@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="ftco-footer">
@@ -44,14 +46,14 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/signup">
                     <span className="fa fa-chevron-right mr-2"></span>Register
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/signin">
                     <span className="fa fa-chevron-right mr-2"></span>Log In
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#">
@@ -66,9 +68,9 @@ const Footer = () => {
               <h2 className="ftco-heading-2">Information</h2>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">
+                  <Link to="/contact">
                     <span className="fa fa-chevron-right mr-2"></span>About us
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#">
