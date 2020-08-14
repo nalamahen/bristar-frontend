@@ -85,12 +85,6 @@ const Shop = (props) => {
   };
 
   useEffect(() => {
-    /*
-    const categoryName = props.match.params.categoryName;
-    if (categoryName) {      
-      getCategoryByName(categoryName);     
-    }*/
-
     init();
     loadFilteredResults(myFilters.filters);
   }, []);
@@ -128,18 +122,27 @@ const Shop = (props) => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            <div className="col-12 d-flex">
-              <h5>Category</h5>
-            </div>
-            <div className="col-3 d-flex">
-              <ul>
-                <Checkbox
-                  categories={categories}
+            <div className="col-3 d-flex flex-column">
+              <div>Category</div>
+              <div>
+                <ul>
+                  <Checkbox
+                    categories={categories}
+                    handleFilters={(filters) => {
+                      handleFilters(filters, 'category');
+                    }}
+                  />
+                </ul>
+              </div>
+              <div>Price Range</div>
+              <div>
+                <RadioButton
+                  prices={prices}
                   handleFilters={(filters) => {
-                    handleFilters(filters, 'category');
+                    handleFilters(filters, 'price');
                   }}
                 />
-              </ul>
+              </div>
             </div>
             <div className="col-md-9">
               <div className="row mb-4">
