@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from 'react';
 
 // Helpers
-import { getFilteredProducts, getCategories } from '../../apis/apiCore';
+import {
+  getFilteredProducts,
+  getCategories,
+  getCategoryByName,
+} from '../../apis/apiCore';
 import { prices } from '../../utils/fixedPrices';
 
 //Components
@@ -11,18 +15,19 @@ import Checkbox from './Checkbox';
 import Layout from './Layout';
 import RadioButton from './RadioButton';
 
-const Shop = () => {
+const Shop = (props) => {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] },
   });
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState({});
   const [error, setError] = useState([]);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
 
-  const init = () => {
+  const init = (name) => {
     getCategories().then((data) => {
       if (data.error) {
         setError(data.error);
@@ -30,23 +35,33 @@ const Shop = () => {
         setCategories(data);
       }
     });
+
+    const getCategoryByName = (name) => {
+      getCategoryByName(name).then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setCategory(data);
+        }
+      });
+    };
   };
 
   const loadFilteredResults = (newFilters) => {
-    // console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters).then((response) => {
       if (response.error) {
         setError(response.error);
       } else {
         setFilteredResults(response.data);
         setSize(response.size);
-        setSkip(0);
+        setSkip();
       }
     });
   };
 
   const loadMore = () => {
     let toSkip = skip + limit;
+    console.log('toSkip');
     getFilteredProducts(skip, limit, myFilters.filters).then((response) => {
       if (response.error) {
         setError(response.error);
@@ -70,6 +85,12 @@ const Shop = () => {
   };
 
   useEffect(() => {
+    /*
+    const categoryName = props.match.params.categoryName;
+    if (categoryName) {      
+      getCategoryByName(categoryName);     
+    }*/
+
     init();
     loadFilteredResults(myFilters.filters);
   }, []);
@@ -100,46 +121,83 @@ const Shop = () => {
 
   return (
     <Layout
-      title="Bristar Shop Page"
+      title="Shop"
       description="Search and find the products of your choice"
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-4">
-          <h2>Filter by categories</h2>
-          <ul>
-            <Checkbox
-              categories={categories}
-              handleFilters={(filters) => {
-                handleFilters(filters, 'category');
-              }}
-            />
-          </ul>
-
-          <h2>Filter by price</h2>
-          <div>
-            <RadioButton
-              prices={prices}
-              handleFilters={(filters) => {
-                handleFilters(filters, 'price');
-              }}
-            />
-          </div>
-        </div>
-        <div className="col-8">
-          <h2 className="mb-4">Products</h2>
+      <section className="ftco-section">
+        <div className="container">
           <div className="row">
-            {filteredResults.map((product) => (
-              <div key={product._id} className="col-4 mb-3">
-                <Card product={product} />
+            <div className="col-12 d-flex">
+              <h5>Category</h5>
+            </div>
+            <div className="col-3 d-flex">
+              <ul>
+                <Checkbox
+                  categories={categories}
+                  handleFilters={(filters) => {
+                    handleFilters(filters, 'category');
+                  }}
+                />
+              </ul>
+            </div>
+            <div className="col-md-9">
+              <div className="row mb-4">
+                <div className="col-md-12 d-flex justify-content-between align-items-center">
+                  <h4 className="product-select">Products</h4>
+                </div>
               </div>
-            ))}
+
+              <div className="row">
+                {filteredResults.map((product) => (
+                  <Card product={product} key={product._id} />
+                ))}
+              </div>
+              {loadMoreButton()}
+            </div>
           </div>
-          {loadMoreButton()}
         </div>
-      </div>
+      </section>
     </Layout>
   );
+  {
+    /* 
+        <div className="row">
+          <div className="col-4">
+            <h2>Filter by categories</h2>
+            <ul>
+              <Checkbox
+                categories={categories}
+                handleFilters={(filters) => {
+                  handleFilters(filters, 'category');
+                }}
+              />
+            </ul>
+
+            <h2>Filter by price</h2>
+            <div>
+              <RadioButton
+                prices={prices}
+                handleFilters={(filters) => {
+                  handleFilters(filters, 'price');
+                }}
+              />
+            </div>
+          </div>
+          <div className="col-8">
+            <h2 className="mb-4">Products</h2>
+            <div className="row">
+              {filteredResults.map((product) => (
+                <div key={product._id} className="col-4 mb-3">
+                  <Card product={product} />
+                </div>
+              ))}
+            </div>
+            {loadMoreButton()}
+          </div>
+        </div>
+    */
+  }
 };
 
 export default Shop;

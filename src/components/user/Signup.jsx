@@ -38,43 +38,6 @@ const Signup = () => {
     });
   };
 
-  const signUpForm = () => (
-    <form>
-      <div className="form-group">
-        <label className="text-muted">Name</label>
-        <input
-          onChange={handleChange('name')}
-          type="text"
-          className="form-control"
-          value={name}
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="text-muted">Eamil</label>
-        <input
-          onChange={handleChange('email')}
-          type="email"
-          className="form-control"
-          value={email}
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="text-muted">Password</label>
-        <input
-          onChange={handleChange('password')}
-          type="password"
-          className="form-control"
-          name={password}
-        />
-      </div>
-      <button onClick={handleSubmit} className="btn btn-primary">
-        Submit
-      </button>
-    </form>
-  );
-
   const showError = () => (
     <div
       className="alert alert-danger"
@@ -95,13 +58,71 @@ const Signup = () => {
 
   return (
     <Layout
-      title="Signup Page"
+      title="Signup"
       description="Signup to Bristar Online Shop"
       className="container col-md-8 offset-md-2"
     >
-      {showSuccess()}
-      {showError()}
-      {signUpForm()}
+      <section className="ftco-section">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-10">
+              {showSuccess()}
+              {showError()}
+              <form action="#" class="billing-form">
+                <h3 class="mb-4 billing-heading">Signup</h3>
+                <div class="row align-items-end">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="firstname">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        onChange={handleChange('name')}
+                        value={name}
+                      />
+                    </div>
+                  </div>
+
+                  <div class="w-100"></div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="emailaddress">Email Address</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        onChange={handleChange('email')}
+                        value={email}
+                      />
+                    </div>
+                  </div>
+
+                  <div class="w-100"></div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="emailaddress">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        onChange={handleChange('password')}
+                        name="password"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="w-100"></div>
+                  <button
+                    onClick={handleSubmit}
+                    className="btn btn-primary py-3 px-4"
+                  >
+                    Submit
+                  </button>
+                  <div class="w-100"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

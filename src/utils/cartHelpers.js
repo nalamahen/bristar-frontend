@@ -1,9 +1,10 @@
-export const addItem = (item, next) => {
+import { API } from '../config';
+
+export const addItem = (item = [], count = 0, next = (f) => f) => {
   let cart = [];
   if (typeof window !== 'undefined') {
-    const cartItem = localStorage.getItem('cart');
-    if (cartItem) {
-      cart = JSON.parse(cartItem);
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
     }
     cart.push({
       ...item,
@@ -24,42 +25,41 @@ export const addItem = (item, next) => {
     });
 
     localStorage.setItem('cart', JSON.stringify(cart));
-
     next();
   }
 };
 
 export const itemTotal = () => {
   if (typeof window !== 'undefined') {
-    const cartItem = localStorage.getItem('cart');
-    if (cartItem) {
-      return JSON.parse(cartItem).length;
+    if (localStorage.getItem('cart')) {
+      return JSON.parse(localStorage.getItem('cart')).length;
     }
   }
-
   return 0;
 };
 
 export const getCart = () => {
   if (typeof window !== 'undefined') {
-    const cartItem = localStorage.getItem('cart');
-    if (cartItem) {
-      return JSON.parse(cartItem);
+    if (localStorage.getItem('cart')) {
+      return JSON.parse(localStorage.getItem('cart'));
     }
   }
-
   return [];
 };
 
 export const updateItem = (productId, count) => {
   let cart = [];
   if (typeof window !== 'undefined') {
-    cart = JSON.parse(localStorage.getItem('cart'));
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+
     cart.map((product, i) => {
       if (product._id === productId) {
         cart[i].count = count;
       }
     });
+
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 };
@@ -67,12 +67,16 @@ export const updateItem = (productId, count) => {
 export const removeItem = (productId) => {
   let cart = [];
   if (typeof window !== 'undefined') {
-    cart = JSON.parse(localStorage.getItem('cart'));
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+
     cart.map((product, i) => {
       if (product._id === productId) {
         cart.splice(i, 1);
       }
     });
+
     localStorage.setItem('cart', JSON.stringify(cart));
   }
   return cart;
@@ -83,4 +87,18 @@ export const emptyCart = (next) => {
     localStorage.removeItem('cart');
     next();
   }
+};
+
+export const getImageBackground = (product) => {
+  return { backgroundImage: `url(${API}/product/photo/${product._id})` };
+};
+
+export const getImageUrl = (product) => {
+  return `${API}/product/photo/${product._id}`;
+};
+
+export const getTotal = (products) => {
+  return products.reduce((currentValue, nextValue) => {
+    return currentValue + nextValue.count * nextValue.price;
+  }, 0);
 };

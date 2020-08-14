@@ -18,6 +18,7 @@ const UpdateProduct = ({ match }) => {
     category: '',
     shipping: '',
     quantity: '',
+    sale: '',
     photo: '',
     loading: false,
     error: false,
@@ -36,6 +37,7 @@ const UpdateProduct = ({ match }) => {
     category,
     shipping,
     quantity,
+    sale,
     loading,
     error,
     createdProduct,
@@ -57,6 +59,7 @@ const UpdateProduct = ({ match }) => {
           category: data.category._id,
           shipping: data.shipping,
           quantity: data.quantity,
+          sale: data.sale,
           formData: new FormData(),
         });
         // load categories
@@ -102,6 +105,7 @@ const UpdateProduct = ({ match }) => {
             photo: '',
             price: '',
             quantity: '',
+            sale: '',
             loading: false,
             error: false,
             redirectToProfile: true,
@@ -187,6 +191,14 @@ const UpdateProduct = ({ match }) => {
           className="form-control"
           value={quantity}
         />
+      </div>
+      <div className="form-group">
+        <label className="text-muted">On Sale</label>
+        <select onChange={handleChange('shipping')} className="form-control">
+          <option>Please select</option>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
       </div>
 
       <button className="btn btn-outline-primary">Update Product</button>

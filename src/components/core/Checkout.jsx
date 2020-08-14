@@ -15,7 +15,7 @@ import { emptyCart } from '../../utils/cartHelpers';
 import { isAuthenticated } from '../../auth';
 import { Link } from 'react-router-dom';
 
-const Checkout = ({ products }) => {
+const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const [data, setData] = useState({
     loading: false,
     success: false,
@@ -65,6 +65,33 @@ const Checkout = ({ products }) => {
   };
 
   let deliveryAddress = data.address;
+
+  const submitOrder = () => {
+    setData({ loading: true });
+
+    const createOrderData = {
+      products: products,
+      transaction_id: `#${Math.random}`,
+      amount: getTotal(products),
+      address: deliveryAddress,
+    };
+
+    createOrder(userId, token, createOrderData)
+      .then((response) => {
+        emptyCart(() => {
+          setRun(!run); // run useEffect in parent Cart
+          console.log('order success and empty cart');
+          setData({
+            loading: false,
+            success: true,
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setData({ loading: false });
+      });
+  };
 
   const buy = () => {
     setData({ loading: true });
@@ -142,6 +169,9 @@ const Checkout = ({ products }) => {
             />
           </div>
 
+          {/*  
+          
+          
           <DropIn
             options={{
               authorization: data.clientToken,
@@ -151,8 +181,9 @@ const Checkout = ({ products }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
-          <button onClick={buy} className="btn btn-success btn-block">
-            Pay
+          */}
+          <button onClick={submitOrder} className="btn btn-success btn-block">
+            Submit Order
           </button>
         </div>
       ) : null}
@@ -173,7 +204,7 @@ const Checkout = ({ products }) => {
       className="alert alert-info"
       style={{ display: success ? '' : 'none' }}
     >
-      Thanks! Your payment was successful!
+      Thank you! Your order was successful!
     </div>
   );
 
@@ -182,7 +213,9 @@ const Checkout = ({ products }) => {
 
   return (
     <div>
-      <h2>Total: ${getTotal()}</h2>
+      <p className="d-flex">
+        <span>Cart Total:</span>&nbsp;<span>&euro;{getTotal(products)}</span>
+      </p>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}

@@ -1,5 +1,6 @@
 // Libs
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 //Helper methods
 import { getProduct, listRelated } from '../../apis/apiCore';
@@ -7,11 +8,14 @@ import { getProduct, listRelated } from '../../apis/apiCore';
 //Components
 import Card from './Card';
 import Layout from './Layout';
+import { addItem, getImageUrl, updateItem } from '../../utils/cartHelpers';
 
 const Product = (props) => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const [count, setCount] = useState(0);
 
   const loadSingleProduct = (productId) => {
     getProduct(productId).then((data) => {
@@ -34,7 +38,27 @@ const Product = (props) => {
   useEffect(() => {
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
-  }, [props]);
+  }, [props, count]);
+
+  const addToCart = () => {
+    addItem(product, setRedirect(true));
+  };
+
+  const handleChange = (productId) => (event) => {
+    if (event.target.value > 1) {
+      addItem(product, setRedirect(false));
+    }
+    setCount(event.target.value < 1 ? 1 : event.target.value);
+    if (event.target.value >= 1) {
+      updateItem(productId, event.target.value);
+    }
+  };
+
+  const shouldRedirect = (redirect) => {
+    if (redirect) {
+      return <Redirect to="/cart" />;
+    }
+  };
 
   return (
     <Layout
@@ -44,22 +68,81 @@ const Product = (props) => {
       }
       className="container-fluid"
     >
-      <h2 className="mb-4">Single Product</h2>
-      <div className="row">
-        <div className="col-8">
-          {product && product.description && (
-            <Card product={product} showProductViewButton={false} />
-          )}
-        </div>
-        <div className="col-4">
-          <h4>Related products</h4>
-          {relatedProducts.map((product) => (
-            <div key={product._id} className="mb-3">
-              <Card product={product} />
+      {shouldRedirect(redirect)}
+      <section className="ftco-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 mb-5">
+              <img
+                src={getImageUrl(product)}
+                className="img-fluid"
+                alt="Colorlib Template"
+              />
             </div>
-          ))}
+            <div className="col-lg-6 product-details pl-md-5">
+              <h3>{product.name}</h3>
+              <div className="rating d-flex">
+                <p className="text-left">
+                  <a href="#" className="mr-2">
+                    {product.sold} <span>Sold</span>
+                  </a>
+                </p>
+              </div>
+              <p className="price">
+                <span>&euro;{product.price}</span>
+              </p>
+              <p>{product.description}</p>
+
+              <div className="row mt-4">
+                <div className="input-group col-md-6 d-flex mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={count}
+                    onChange={handleChange(product._id)}
+                  />
+                </div>
+                <div className="w-100"></div>
+                <div className="col-md-12">
+                  <p>{product.quantity} piece available</p>
+                </div>
+              </div>
+              <p>
+                <a
+                  href="#"
+                  onClick={addToCart}
+                  className="btn btn-primary py-3 px-5 mr-2"
+                >
+                  Add to Cart
+                </a>
+                <a
+                  href="#"
+                  onClick={addToCart}
+                  className="btn btn-primary py-3 px-5"
+                >
+                  Buy now
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="row justify-content-center pb-5">
+            <div className="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
+              <h2>Related products</h2>
+            </div>
+          </div>
+
+          <div className="row">
+            {relatedProducts.map((product) => (
+              <Card product={product} displayColumn="3" key={product._id} />
+            ))}
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

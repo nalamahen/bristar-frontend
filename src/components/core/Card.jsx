@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import moment from 'moment';
 
-import { addItem, removeItem, updateItem } from '../../utils/cartHelpers';
+import { API } from '../../config';
+
+import {
+  addItem,
+  getImageBackground,
+  removeItem,
+  updateItem,
+} from '../../utils/cartHelpers';
 import ShowImage from './ShowImage';
 
 const Card = ({
   product,
-  showViewProductButton = true,
+  showProductViewLink = true,
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
+  promotion = '',
+  displayColumn = 4,
   setRun = (f) => f,
   run = undefined,
   // changeCartSize
@@ -18,9 +27,9 @@ const Card = ({
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
 
-  const showViewButton = (showViewProductButton) => {
+  const showViewButton = (showProductViewLink) => {
     return (
-      showViewProductButton && (
+      showProductViewLink && (
         <Link to={`/product/${product._id}`} className="mr-2">
           <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">
             View Product
@@ -31,26 +40,13 @@ const Card = ({
   };
   const addToCart = () => {
     // console.log('added');
-    addItem(product, setRedirect(true));
+    addItem(product, setRedirect(false));
   };
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
       return <Redirect to="/cart" />;
     }
-  };
-
-  const showAddToCartBtn = (showAddToCartButton) => {
-    return (
-      showAddToCartButton && (
-        <button
-          onClick={addToCart}
-          className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
-        >
-          Add to cart
-        </button>
-      )
-    );
   };
 
   const showStock = (quantity) => {
@@ -74,9 +70,7 @@ const Card = ({
       cartUpdate && (
         <div>
           <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">Adjust Quantity</span>
-            </div>
+            <div className="input-group-prepend"></div>
             <input
               type="number"
               className="form-control"
@@ -103,7 +97,60 @@ const Card = ({
       )
     );
   };
+
+  /*
+  const getImageUrl = (product) => {;
+    return { backgroundImage: `url(${API}/product/photo/${product._id})` };
+  };
+*/
   return (
+    <div className={`col-md-${displayColumn} d-flex`}>
+      {shouldRedirect(redirect)}
+      <div className="product ftco-animate fadeInUp ftco-animated">
+        <div
+          className="img d-flex align-items-center justify-content-center"
+          style={getImageBackground(product)}
+        >
+          <div className="desc">
+            <p className="meta-prod d-flex">
+              {showAddToCartButton && (
+                <Link
+                  to="#"
+                  className="d-flex align-items-center justify-content-center"
+                  onClick={addToCart}
+                >
+                  <span className="flaticon-shopping-bag"></span>
+                </Link>
+              )}
+              {showProductViewLink && (
+                <Link
+                  to={`/product/${product._id}`}
+                  className="d-flex align-items-center justify-content-center"
+                >
+                  <span className="flaticon-visibility"></span>
+                </Link>
+              )}
+            </p>
+          </div>
+        </div>
+        <div className="text text-center">
+          <span className="sale">{promotion}</span>
+          <span className="category">
+            {product.category && product.category.name}
+          </span>
+          <h2>{product.name}</h2>
+          <p className="mb-0">
+            <span className="price">&euro;{product.price}</span>
+          </p>
+        </div>
+        {showRemoveButton(showRemoveProductButton)}
+        {showCartUpdateOptions(cartUpdate)}
+      </div>
+    </div>
+  );
+
+  {
+    /*  
     <div className="card ">
       <div className="card-header card-header-1 ">{product.name}</div>
       <div className="card-body">
@@ -120,7 +167,7 @@ const Card = ({
         {showStock(product.quantity)}
         <br />
 
-        {showViewButton(showViewProductButton)}
+        {showViewButton(showProductViewLink)}
 
         {showAddToCartBtn(showAddToCartButton)}
 
@@ -129,7 +176,8 @@ const Card = ({
         {showCartUpdateOptions(cartUpdate)}
       </div>
     </div>
-  );
+    */
+  }
 };
 
 export default Card;
