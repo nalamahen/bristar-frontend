@@ -21,7 +21,7 @@ const HomeHeroWrapper = () => {
                   Shop Now
                 </Link>
                 <a
-                  href="#"
+                  href="/"
                   className="btn btn-white btn-outline-white py-2 px-4"
                 >
                   Read more

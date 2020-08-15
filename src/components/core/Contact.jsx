@@ -68,7 +68,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="row no-gutters">
-                  <div className="col-md-7">
+                  <div className="col-md-12">
                     <div className="contact-wrap w-100 p-md-5 p-4">
                       <h3 className="mb-4">Contact Us</h3>
                       <form
@@ -142,6 +142,8 @@ const Contact = () => {
                       </form>
                     </div>
                   </div>
+                  {/*
+                   */}
                   <div className="col-md-5 order-md-first d-flex align-items-stretch">
                     <div id="map" className="map"></div>
                   </div>

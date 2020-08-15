@@ -1,11 +1,10 @@
 // Libs
 import React, { useState, useEffect } from 'react';
-import DropIn from 'braintree-web-drop-in-react';
+//import DropIn from 'braintree-web-drop-in-react';
 
 //Helper methods
 import {
   createOrder,
-  getProducts,
   getBraintreeClientToken,
   processPayment,
 } from '../../apis/apiCore';
@@ -50,7 +49,9 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
-      return currentValue + nextValue.count * nextValue.price;
+      return parseFloat(
+        (currentValue + nextValue.count * nextValue.price).toFixed(2)
+      );
     }, 0);
   };
 

@@ -8,12 +8,11 @@ import { getProducts } from '../../apis/apiCore';
 //Components
 import Card from './Card';
 import Layout from './Layout';
-import Search from './Search';
+//import Search from './Search';
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
-  const [productBySale, setProductBySale] = useState([]);
   const [error, setError] = useState(false);
 
   const loadProductsBySell = () => {
@@ -32,16 +31,6 @@ const Home = () => {
         setError(data.error);
       } else {
         setProductsByArrival(data);
-      }
-    });
-  };
-
-  const loadProductsBySale = () => {
-    getProducts('sale').then((data) => {
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setProductsBySell(data);
       }
     });
   };

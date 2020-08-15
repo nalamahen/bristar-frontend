@@ -9,7 +9,6 @@ import { getPurchaseHistory } from '../../apis/apiUser';
 
 //Components
 import Layout from '../core/Layout';
-import { history } from 'react-router-dom';
 
 const Dashboard = () => {
   const [history, setHistory] = useState([]);

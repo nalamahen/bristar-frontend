@@ -16,7 +16,7 @@ const Menu = ({ history }) => {
       id="ftco-navbar"
     >
       <div className="container">
-        <img src="/images/logo-small-transparent.png" />
+        <img src="/images/logo-small-transparent.png" alt="Bristar" />
         <a className="navbar-brand" href="index.html">
           Liquor <span>store</span>
         </a>

@@ -7,10 +7,10 @@ const Topbar = ({ history }) => {
         <div className="row">
           <div className="col-md-6 d-flex align-items-center">
             <p className="mb-0 phone pl-md-2">
-              <a href="#" className="mr-2">
+              <a href="/" className="mr-2">
                 <span className="fa fa-phone mr-1"></span> +372 8195 8388
               </a>
-              <a href="#">
+              <a href="/">
                 <span className="fa fa-paper-plane mr-1"></span>
                 sales@bristar.be
               </a>

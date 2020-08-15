@@ -122,7 +122,7 @@ const Shop = (props) => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            <div className="col-3 d-flex flex-column">
+            <div className="col-3 d-flex flex-column cart-total">
               <div>Category</div>
               <div>
                 <ul>
@@ -163,44 +163,6 @@ const Shop = (props) => {
       </section>
     </Layout>
   );
-  {
-    /* 
-        <div className="row">
-          <div className="col-4">
-            <h2>Filter by categories</h2>
-            <ul>
-              <Checkbox
-                categories={categories}
-                handleFilters={(filters) => {
-                  handleFilters(filters, 'category');
-                }}
-              />
-            </ul>
-
-            <h2>Filter by price</h2>
-            <div>
-              <RadioButton
-                prices={prices}
-                handleFilters={(filters) => {
-                  handleFilters(filters, 'price');
-                }}
-              />
-            </div>
-          </div>
-          <div className="col-8">
-            <h2 className="mb-4">Products</h2>
-            <div className="row">
-              {filteredResults.map((product) => (
-                <div key={product._id} className="col-4 mb-3">
-                  <Card product={product} />
-                </div>
-              ))}
-            </div>
-            {loadMoreButton()}
-          </div>
-        </div>
-    */
-  }
 };
 
 export default Shop;
