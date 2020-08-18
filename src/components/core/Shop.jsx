@@ -22,7 +22,7 @@ const Shop = (props) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState({});
   const [error, setError] = useState([]);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(15);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
