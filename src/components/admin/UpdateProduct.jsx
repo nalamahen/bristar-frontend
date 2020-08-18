@@ -1,6 +1,6 @@
 // Libs
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 //Helper methods
 import { getProduct, getCategories, updateProduct } from '../../apis/apiAdmin';
@@ -26,14 +26,13 @@ const UpdateProduct = ({ match }) => {
     redirectToProfile: false,
     formData: '',
   });
-  const [categories, setCategories] = useState([]);
 
   const { user, token } = isAuthenticated();
   const {
     name,
     description,
     price,
-    // categories,
+    categories,
     category,
     shipping,
     quantity,
@@ -44,6 +43,20 @@ const UpdateProduct = ({ match }) => {
     redirectToProfile,
     formData,
   } = values;
+
+  // load categories and set form data
+  const initCategories = () => {
+    getCategories().then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          categories: data,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
 
   const init = (productId) => {
     getProduct(productId).then((data) => {
@@ -68,17 +81,6 @@ const UpdateProduct = ({ match }) => {
     });
   };
 
-  // load categories and set form data
-  const initCategories = () => {
-    getCategories().then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setCategories(data);
-      }
-    });
-  };
-
   useEffect(() => {
     init(match.params.productId);
   }, []);
@@ -91,6 +93,7 @@ const UpdateProduct = ({ match }) => {
 
   const clickSubmit = (event) => {
     event.preventDefault();
+    console.log('Values:', values);
     setValues({ ...values, error: '', loading: true });
 
     updateProduct(match.params.productId, user._id, token, formData).then(
@@ -115,8 +118,6 @@ const UpdateProduct = ({ match }) => {
       }
     );
   };
-
-  console.log('namd', name);
 
   const newPostForm = () => (
     <form className="mb-3" onSubmit={clickSubmit}>
@@ -233,7 +234,7 @@ const UpdateProduct = ({ match }) => {
   const redirectUser = () => {
     if (redirectToProfile) {
       if (!error) {
-        return <Redirect to="/" />;
+        return <Redirect to="/admin/products" />;
       }
     }
   };

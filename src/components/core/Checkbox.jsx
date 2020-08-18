@@ -27,7 +27,12 @@ const Checkbox = ({ categories, handleFilters }) => {
         type="checkbox"
         className="form-check-input"
       />
-      <label className="form-check-label">{category.name}</label>
+      <label
+        className="form-check-label"
+        style={{ textTransform: 'capitalize' }}
+      >
+        {category.name}
+      </label>
     </li>
   ));
 };

@@ -122,17 +122,20 @@ const Shop = (props) => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            <div className="col-3 d-flex flex-column cart-total">
-              <div>Category</div>
-              <div>
-                <ul>
-                  <Checkbox
-                    categories={categories}
-                    handleFilters={(filters) => {
-                      handleFilters(filters, 'category');
-                    }}
-                  />
-                </ul>
+            <div className="col-4 d-flex flex-column cart-total">
+              <div className="sidebar-box">
+                <div>Category</div>
+                <div>
+                  <ul>
+                    <Checkbox
+                      categories={categories}
+                      handleFilters={(filters) => {
+                        handleFilters(filters, 'category');
+                      }}
+                    />
+                  </ul>
+                </div>
+                <hr />
               </div>
               <div>Price Range</div>
               <div>
@@ -144,7 +147,7 @@ const Shop = (props) => {
                 />
               </div>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-8">
               <div className="row mb-4">
                 <div className="col-md-12 d-flex justify-content-between align-items-center">
                   <h4 className="product-select">Products</h4>

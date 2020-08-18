@@ -25,26 +25,34 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/shop" exact component={Shop} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={Signup} />
-        <Route path="/shop/category/:categoryName" exact component={Shop} />
-        <Route path="/shop" exact component={Shop} />
-        <Route path="/product/:productId" exact component={Product} />
-        <Route path="/cart" exact component={Cart} />
-        <Route path="/order" exact component={Order} />
-        <Route path="/contact" exact component={Contact} />
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
-        <PrivateRoute path="/profile/:userId" exact component={Profile} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-        <AdminRoute path="/admin/orders" exact component={Orders} />
         <AdminRoute path="/create/category" exact component={AddCategory} />
         <AdminRoute path="/create/product" exact component={AddProduct} />
-        <AdminRoute path="/admin/products" exact component={ManageProducts} />
+        <Route path="/product/:productId" exact component={Product} />
+        <Route path="/cart" exact component={Cart} />
+        <AdminRoute path="/admin/orders" exact component={Orders} />
+        <PrivateRoute path="/profile/:userId" exact component={Profile} />
+        <PrivateRoute path="/admin/products" exact component={ManageProducts} />
         <AdminRoute
           path="/admin/product/update/:productId"
           exact
           component={UpdateProduct}
         />
+        {/* 
+        
+        <AdminRoute
+          path="/admin/category/update/:categoryId"
+          exact
+          component={UpdateCategory}
+        />
+        */}
+
+        <Route path="/shop/category/:categoryName" exact component={Shop} />
+        <Route path="/contact" exact component={Contact} />
       </Switch>
     </BrowserRouter>
   );

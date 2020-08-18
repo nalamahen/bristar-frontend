@@ -89,10 +89,11 @@ const Home = () => {
                   <span className="flaticon-free-delivery"></span>
                 </div>
                 <div className="text">
-                  <h2>Free Shipping &amp; Return</h2>
+                  <h2>Free Delivery &amp; Return</h2>
                   <p>
-                    A small river named Duden flows by their place and supplies
-                    it with the necessary regelialia.
+                    Once your order has been placed, we will do our utmost to
+                    deliver to your door as soon as possible. We currently only
+                    deliver to Belguim mainland postcodes.
                   </p>
                 </div>
               </div>
