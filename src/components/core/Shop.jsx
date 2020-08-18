@@ -68,7 +68,7 @@ const Shop = (props) => {
       } else {
         setFilteredResults([...filteredResults, ...response.data]);
         setSize(response.size);
-        setSkip(0);
+        setSkip(toSkip);
       }
     });
   };
