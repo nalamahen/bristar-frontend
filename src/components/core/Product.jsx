@@ -89,7 +89,7 @@ const Product = (props) => {
                 </p>
               </div>
               <p className="price">
-                <span>&euro;{product.price}</span>
+                <span>&euro;{parseFloat(product.price).toFixed(2)}</span>
               </p>
               <p>{product.description}</p>
 

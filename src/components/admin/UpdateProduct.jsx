@@ -68,7 +68,7 @@ const UpdateProduct = ({ match }) => {
           ...values,
           name: data.name,
           description: data.description,
-          price: data.price,
+          price: parseFloat(data.price).toFixed(2),
           category: data.category._id,
           shipping: data.shipping,
           quantity: data.quantity,
