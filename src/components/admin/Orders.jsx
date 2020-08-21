@@ -43,7 +43,7 @@ const Orders = () => {
   const showOrderLength = () => {
     if (orders.length > 0) {
       return (
-        <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
+        <h1 className="text-danger display-5">Total orders: {orders.length}</h1>
       );
     }
     return <h1 className="text-danger">No orders</h1>;
@@ -91,60 +91,66 @@ const Orders = () => {
       title="View Orders"
       description={`G'day ${user.name}, you can manage all the orders`}
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showOrderLength()}
-          {orders.map((order) => {
-            return (
-              <div
-                className="mt-5"
-                key={order._id}
-                style={{ borderBottom: '5px solid indigo' }}
-              >
-                <h2 className="mb-5">
-                  <span className="bg-primary">Order ID: {order._id}</span>
-                </h2>
-                <ul className="list-group mb-2">
-                  <li className="list-group-item">{showStatus(order)}</li>
-                  <li className="list-group-item">
-                    Transaction ID: {order.transaction_id}
-                  </li>
-                  <li className="list-group-item">Amount: ${order.amount}</li>
-                  <li className="list-group-item">
-                    Ordered by: {order.user.name}
-                  </li>
-                  <li className="list-group-item">
-                    Ordered on: {moment(order.createdAt).fromNow()}
-                  </li>
-                  <li className="list-group-item">
-                    Delivery address: {order.address}
-                  </li>
-                </ul>
-
-                <h3 className="mt-4 mb-4 font-italic">
-                  Total products in the order: {order.products.length}
-                </h3>
-
-                {order.products.map((product) => (
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12">
+              {showOrderLength()}
+              {orders.map((order) => {
+                return (
                   <div
-                    className="mb-4"
-                    key={product._id}
-                    style={{
-                      padding: '20px',
-                      border: '1px solid indigo',
-                    }}
+                    className="mt-5"
+                    key={order._id}
+                    style={{ borderBottom: '5px solid indigo' }}
                   >
-                    {showInput('Product name', product.name)}
-                    {showInput('Product price', product.price)}
-                    {showInput('Product total', product.count)}
-                    {showInput('Product Id', product._id)}
+                    <h2 className="mb-5">
+                      <span className="bg-primary">Order ID: {order._id}</span>
+                    </h2>
+                    <ul className="list-group mb-2">
+                      <li className="list-group-item">{showStatus(order)}</li>
+                      <li className="list-group-item">
+                        Transaction ID: {order.transaction_id}
+                      </li>
+                      <li className="list-group-item">
+                        Amount: ${order.amount}
+                      </li>
+                      <li className="list-group-item">
+                        Ordered by: {order.user.name}
+                      </li>
+                      <li className="list-group-item">
+                        Ordered on: {moment(order.createdAt).fromNow()}
+                      </li>
+                      <li className="list-group-item">
+                        Delivery address: {order.address}
+                      </li>
+                    </ul>
+
+                    <h3 className="mt-4 mb-4 font-italic">
+                      Total products in the order: {order.products.length}
+                    </h3>
+
+                    {order.products.map((product) => (
+                      <div
+                        className="mb-4"
+                        key={product._id}
+                        style={{
+                          padding: '20px',
+                          border: '1px solid indigo',
+                        }}
+                      >
+                        {showInput('Product name', product.name)}
+                        {showInput('Product price', product.price)}
+                        {showInput('Product total', product.count)}
+                        {showInput('Product Id', product._id)}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };

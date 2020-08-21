@@ -60,10 +60,14 @@ const AdminDashboard = () => {
       description={`G'day ${name}!`}
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-3">{adminLinks()}</div>
-        <div className="col-9">{adminInfo()}</div>
-      </div>
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-m-3 mb-3">{adminLinks()}</div>
+            <div className="col-9">{adminInfo()}</div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

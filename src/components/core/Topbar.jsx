@@ -1,28 +1,25 @@
 import React from 'react';
 
+import SearchBox from '../core/SearchBox';
+
 const Topbar = ({ history }) => {
   return (
     <div className="wrap">
       <div className="container">
-        <div className="row">
-          <div className="col-md-6 d-flex align-items-center">
-            <p className="mb-0 phone pl-md-2">
-              <a href="/" className="mr-2">
-                <span className="fa fa-phone mr-1"></span> +372 8195 8388
+        <div class="row">
+          <div class="col-md-3 d-flex align-items-center">
+            <p class="mb-0 phone pl-md-2">
+              <a href="#" class="mr-2">
+                <span class="fa fa-phone mr-1"></span> +00 1234 567
               </a>
-              <a href="/">
-                <span className="fa fa-paper-plane mr-1"></span>
-                sales@bristar.be
+              <a href="#">
+                <span class="fa fa-paper-plane mr-1"></span> youremail@email.com
               </a>
             </p>
           </div>
-          {/* Search  */}
-
-          {/* End search  */}
-          <div className="col-md-6 d-flex justify-content-md-end">
-            <div className="social-media mr-4"></div>
-            <div className="reg">
-              <p className="mb-0"></p>
+          <div class="col-md-9 d-flex justify-content-end">
+            <div class="mr-4">
+              <SearchBox />
             </div>
           </div>
         </div>

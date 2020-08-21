@@ -113,9 +113,17 @@ const Profile = ({ match }) => {
       description="Update your profile"
       className="container-fluid"
     >
-      <h2 className="mb-4">Profile update</h2>
-      {profileUpdate(name, email, password)}
-      {redirectUser()}
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12">
+              <h2 className="mb-4">Profile update</h2>
+              {profileUpdate(name, email, password)}
+              {redirectUser()}
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

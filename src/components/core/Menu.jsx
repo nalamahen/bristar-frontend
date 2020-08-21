@@ -19,7 +19,7 @@ const Menu = ({ history }) => {
         <Link to="/">
           <img src="/images/logo-small-transparent.png" alt="Bristar" />
         </Link>
-        Liquor <span>store</span>
+        Liquor&nbsp;<span>Store</span>
         <div className="order-lg-last btn-group">
           <Link
             to="/cart"
@@ -121,6 +121,15 @@ const Menu = ({ history }) => {
                 </span>
               </li>
             )}
+            <li className="nav-item">
+              <Link
+                to="/about"
+                className="nav-link"
+                style={isActive(history, '/about')}
+              >
+                About Us
+              </Link>
+            </li>
             <li className="nav-item">
               <Link
                 to="/contact"

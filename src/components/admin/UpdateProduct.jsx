@@ -244,15 +244,19 @@ const UpdateProduct = ({ match }) => {
       title="Add a new product"
       description={`G'day ${user.name}, ready to add a new product?`}
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showLoading()}
-          {showSuccess()}
-          {showError()}
-          {newPostForm()}
-          {redirectUser()}
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12">
+              {showLoading()}
+              {showSuccess()}
+              {showError()}
+              {newPostForm()}
+              {redirectUser()}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };

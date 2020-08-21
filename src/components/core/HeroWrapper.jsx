@@ -4,7 +4,7 @@ const HeroWrapper = ({ title }) => {
   return (
     <section
       className="hero-wrap hero-wrap-2"
-      style={{ background: "url('/images/bg_2.jpg')" }}
+      style={{ background: "url('/images/bg_4.jpg')" }}
       data-stellar-background-ratio="0.5"
     >
       <div className="overlay"></div>

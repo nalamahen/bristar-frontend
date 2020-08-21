@@ -122,7 +122,7 @@ const Shop = (props) => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 cart-total">
+            <div className="col-lg-3 col-md-3">
               <div className="sidebar-box">
                 <div>Category</div>
                 <div>

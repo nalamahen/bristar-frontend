@@ -76,14 +76,18 @@ const AddCategory = () => {
       title="Add a new category"
       description={`G'day ${user.name}, ready to add a new category?`}
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showSuccess()}
-          {showError()}
-          {newCategoryFom()}
-          {goBack()}
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12">
+              {showSuccess()}
+              {showError()}
+              {newCategoryFom()}
+              {goBack()}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };

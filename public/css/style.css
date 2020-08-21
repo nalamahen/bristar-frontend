@@ -5001,10 +5001,10 @@ input[type='button'].btn-block {
 }
 
 .card-header {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   margin-bottom: 0;
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.03);
+  color: white;
+  background-color: #a23f25;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-header:first-child {
@@ -10562,7 +10562,7 @@ h5,
 .ftco-navbar-light {
   background: transparent !important;
   position: absolute;
-  top: 35px;
+  top: 60px;
   left: 0;
   right: 0;
   z-index: 3;
@@ -11014,7 +11014,7 @@ h5,
 .hero-wrap.hero-wrap-2 .slider-text .bread {
   position: relative;
   color: #fff !important;
-  font-size: 60px;
+  font-size: 40px;
   color: #fff;
   line-height: 1.1;
   font-weight: 400;

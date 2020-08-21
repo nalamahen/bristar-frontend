@@ -15,7 +15,8 @@ const Footer = () => {
                 </a>
               </h2>
               <p>
-                Far far away, behind the word mountains, far from the countries.
+                At Bristar.be, we workd hard to deliver a great service and fast
+                delivery as standard!
               </p>
               <ul className="ftco-footer-social list-unstyled mt-2">
                 <li className="ftco-animate">
@@ -41,9 +42,9 @@ const Footer = () => {
               <h2 className="ftco-heading-2">My Accounts</h2>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">
+                  <Link to="/user/dashboard">
                     <span className="fa fa-chevron-right mr-2"></span>My Account
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/signup">
@@ -56,9 +57,9 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/user/dashboard">
                     <span className="fa fa-chevron-right mr-2"></span>My Order
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -68,7 +69,7 @@ const Footer = () => {
               <h2 className="ftco-heading-2">Information</h2>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/contact">
+                  <Link to="/about">
                     <span className="fa fa-chevron-right mr-2"></span>About us
                   </Link>
                 </li>

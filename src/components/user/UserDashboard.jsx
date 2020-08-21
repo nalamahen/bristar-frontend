@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   const userLinks = () => {
     return (
-      <div className="card">
+      <div className="card mb-5">
         <h4 className="card-header">User Links</h4>
         <ul className="list-group">
           <li className="list-group-item">
@@ -103,13 +103,17 @@ const Dashboard = () => {
       description={`G'day ${name}!`}
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-3">{userLinks()}</div>
-        <div className="col-9">
-          {userInfo()}
-          {purchaseHistory()}
+      <section class="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-m-3">{userLinks()}</div>
+            <div className="col-9">
+              {userInfo()}
+              {purchaseHistory()}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };

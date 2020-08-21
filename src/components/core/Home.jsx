@@ -8,7 +8,7 @@ import { getProducts } from '../../apis/apiCore';
 //Components
 import Card from './Card';
 import Layout from './Layout';
-//import Search from './Search';
+import SearchBox from './SearchBox';
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -47,10 +47,7 @@ const Home = () => {
       className="container-fluid"
       home={true}
     >
-      {/*
-      
-      <Search />
-      */}
+      <SearchBox />
 
       <section className="ftco-intro">
         <div className="container">
@@ -63,8 +60,8 @@ const Home = () => {
                 <div className="text">
                   <h2>Online Support 24/7</h2>
                   <p>
-                    A small river named Duden flows by their place and supplies
-                    it with the necessary regelialia.
+                    If you would like to know more about our products, services
+                    and prices , please contact us via email or phone.
                   </p>
                 </div>
               </div>
@@ -77,8 +74,8 @@ const Home = () => {
                 <div className="text">
                   <h2>Money Back Guarantee</h2>
                   <p>
-                    A small river named Duden flows by their place and supplies
-                    it with the necessary regelialia.
+                    We will offer our customers a full refund if they are not
+                    satisfied with our products.
                   </p>
                 </div>
               </div>
@@ -113,16 +110,17 @@ const Home = () => {
               <div className="heading-section">
                 <h2 className="mb-4">Desire Meets A New Taste</h2>
                 <p>
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia. It is a paradisematic country,
-                  in which roasted parts of sentences fly into your mouth.
+                  Bristar is the Belgium leading online drinks store offering a
+                  comprehensive range of Spirits, Beers Gifts. We do not operate
+                  any stores. As a pure online operation, we strive to deliver a
+                  high level of service including a fast turnaround of orders,
+                  delivering anywhere in the Belgium.
                 </p>
                 <p>
-                  On her way she met a copy. The copy warned the Little Blind
-                  Text, that where it came from it would have been rewritten a
-                  thousand times and everything that was left from its origin
-                  would be the word "and" and the Little Blind Text should turn
-                  around and return to its own, safe country.
+                  Whatever your requirements, whether you're restocking a bar,
+                  catering for an event or occasion, sending gifts, or for
+                  personal enjoyment, at brisker.be we work hard to deliver a
+                  great service and fast delivery as standard!
                 </p>
                 <p className="year">
                   <strong className="number" data-number="115">
