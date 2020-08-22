@@ -8,7 +8,6 @@ import { getProducts } from '../../apis/apiCore';
 //Components
 import Card from './Card';
 import Layout from './Layout';
-import SearchBox from './SearchBox';
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -47,8 +46,6 @@ const Home = () => {
       className="container-fluid"
       home={true}
     >
-      <SearchBox />
-
       <section className="ftco-intro">
         <div className="container">
           <div className="row no-gutters">
