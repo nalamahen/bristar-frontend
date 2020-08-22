@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import SearchBox from '../core/SearchBox';
 
@@ -7,17 +8,21 @@ const Topbar = ({ history }) => {
     <div className="wrap">
       <div className="container">
         <div class="row">
-          <div class="col-md-3 d-flex align-items-center">
+          <div class="col-md-6 d-flex align-items-center">
             <p class="mb-0 phone pl-md-2">
               <a href="#" class="mr-2">
-                <span class="fa fa-phone mr-1"></span> +00 1234 567
+                <span class="fa fa-phone mr-1"></span> +32 493410755
               </a>
-              <a href="#">
-                <span class="fa fa-paper-plane mr-1"></span> youremail@email.com
+              <a href="mailto:sales@bristar.be">
+                <span class="fa fa-paper-plane mr-1"></span>sales@bristar.be
               </a>
+              <Link to="/">
+                <span class="fa mr-1"></span>
+                Free deliery order over &euro;30
+              </Link>
             </p>
           </div>
-          <div class="col-md-9 d-flex justify-content-end">
+          <div class="col-md-6 d-flex justify-content-end">
             <div class="mr-4">
               <SearchBox />
             </div>

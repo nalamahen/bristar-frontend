@@ -133,7 +133,6 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
               .then((response) => {
                 emptyCart(() => {
                   setRun(!run); // run useEffect in parent Cart
-                  window.locatioin.reload();
                   console.log('payment success and empty cart');
                   setData({
                     loading: false,

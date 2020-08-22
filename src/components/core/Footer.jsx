@@ -97,15 +97,16 @@ const Footer = () => {
               <h2 className="ftco-heading-2">Quick Link</h2>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">
+                  <Link to="/contact">
                     <span className="fa fa-chevron-right mr-2"></span>Help
                     Center
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
-                    <span className="fa fa-chevron-right mr-2"></span>Faq's
-                  </a>
+                  <Link to="/delivery-faq">
+                    <span className="fa fa-chevron-right mr-2"></span>Delivery
+                    Information and Faq's
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -122,13 +123,13 @@ const Footer = () => {
                     </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="//#region ">
                       <span className="icon fa fa-phone"></span>
-                      <span className="text">+372 8195 8388</span>
+                      <span className="text">+32 493410755</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="mailto:sales@bristar.be">
                       <span className="icon fa fa-paper-plane pr-4"></span>
                       <span className="text">sales@bristar.be</span>
                     </a>

@@ -124,7 +124,7 @@ const Shop = (props) => {
           <div className="row">
             <div className="col-lg-3 col-md-3">
               <div className="sidebar-box">
-                <div>Category</div>
+                <div className="filter-heading">Category</div>
                 <div>
                   <ul>
                     <Checkbox
@@ -135,9 +135,8 @@ const Shop = (props) => {
                     />
                   </ul>
                 </div>
-                <hr />
               </div>
-              <div>Price Range</div>
+              <div className="filter-heading">Price Range</div>
               <div>
                 <RadioButton
                   prices={prices}
@@ -148,12 +147,6 @@ const Shop = (props) => {
               </div>
             </div>
             <div className="col-md-9">
-              <div className="row mb-4">
-                <div className="col-md-12 d-flex justify-content-between align-items-center">
-                  <h4 className="product-select">Products</h4>
-                </div>
-              </div>
-
               <div className="row">
                 {filteredResults.map((product) => (
                   <Card product={product} key={product._id} />

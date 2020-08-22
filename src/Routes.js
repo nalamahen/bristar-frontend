@@ -9,6 +9,7 @@ import AdminRoute from './auth/AdminRoute';
 import Cart from './components/core/Cart';
 import Contact from './components/core/Contact';
 import Dashboard from './components/user/UserDashboard';
+import DeliveryInofAndFaq from './components/core/DeliveryInofAndFaq';
 import Home from './components/core/Home';
 import ManageProducts from './components/admin/ManageProducts';
 import Orders from './components/admin/Orders';
@@ -56,6 +57,7 @@ const Routes = () => {
         <Route path="/shop/category/:categoryName" exact component={Shop} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/about" exact component={AboutUs} />
+        <Route path="/delivery-faq" exact component={DeliveryInofAndFaq} />
       </Switch>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Layout from './Layout';
 
@@ -36,7 +37,7 @@ const Contact = () => {
                       <div className="text">
                         <p>
                           <span>Phone:</span>{' '}
-                          <a href="tel://1234567920">+ 372 8195 8388</a>
+                          <a href="tel://1234567920">+32 493410755</a>
                         </p>
                       </div>
                     </div>
@@ -61,7 +62,7 @@ const Contact = () => {
                       </div>
                       <div className="text">
                         <p>
-                          <span>Website</span> <a href="#">bristar.be</a>
+                          <span>Website</span> <Link to="/">bristar.be</Link>
                         </p>
                       </div>
                     </div>
