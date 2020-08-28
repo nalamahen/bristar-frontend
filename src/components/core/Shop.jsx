@@ -145,6 +145,7 @@ const Shop = (props) => {
                   }}
                 />
               </div>
+              <div className="filter-heading"></div>
             </div>
             <div className="col-md-9">
               <div className="row">

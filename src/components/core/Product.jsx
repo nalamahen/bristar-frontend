@@ -81,6 +81,8 @@ const Product = (props) => {
             </div>
             <div className="col-lg-6 product-details pl-md-5">
               <h3>{product.name}</h3>
+              {/* 
+              
               <div className="rating d-flex">
                 <p className="text-left">
                   <a href="#" className="mr-2">
@@ -88,6 +90,7 @@ const Product = (props) => {
                   </a>
                 </p>
               </div>
+              */}
               <p className="price">
                 <span>&euro;{parseFloat(product.price).toFixed(2)}</span>
               </p>

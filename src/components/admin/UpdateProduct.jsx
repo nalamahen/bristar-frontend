@@ -93,7 +93,6 @@ const UpdateProduct = ({ match }) => {
 
   const clickSubmit = (event) => {
     event.preventDefault();
-    console.log('Values:', values);
     setValues({ ...values, error: '', loading: true });
 
     updateProduct(match.params.productId, user._id, token, formData).then(

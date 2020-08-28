@@ -119,7 +119,7 @@ const Footer = () => {
                   <li>
                     <span className="icon fa fa-map marker"></span>
                     <span className="text">
-                      Molenweideplein 1/42, Lanaken 3620, Belgium
+                      Molenweideplein 42, Lanaken 3620, Belgium
                     </span>
                   </li>
                   <li>

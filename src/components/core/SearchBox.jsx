@@ -58,7 +58,7 @@ const SearchBox = ({ props }) => {
         <input
           className="input search-input"
           type="text"
-          placeholder="Enter your keyword"
+          placeholder="Search..."
           onChange={handleChange('search')}
         />
         <select

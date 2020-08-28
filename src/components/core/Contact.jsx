@@ -23,8 +23,8 @@ const Contact = () => {
                       </div>
                       <div className="text">
                         <p>
-                          <span>Address:</span> Molenweideplein 1/42 Lanaken
-                          3620, Belgium
+                          <span>Address:</span> Molenweideplein 42 Lanaken 3620,
+                          Belgium
                         </p>
                       </div>
                     </div>

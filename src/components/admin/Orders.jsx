@@ -112,7 +112,7 @@ const Orders = () => {
                         Transaction ID: {order.transaction_id}
                       </li>
                       <li className="list-group-item">
-                        Amount: ${order.amount}
+                        Amount: &euro;{order.amount}
                       </li>
                       <li className="list-group-item">
                         Ordered by: {order.user.name}
@@ -139,7 +139,10 @@ const Orders = () => {
                         }}
                       >
                         {showInput('Product name', product.name)}
-                        {showInput('Product price', product.price)}
+                        {showInput(
+                          'Product price',
+                          parseFloat(product.price).toFixed(2)
+                        )}
                         {showInput('Product total', product.count)}
                         {showInput('Product Id', product._id)}
                       </div>
