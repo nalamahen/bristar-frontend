@@ -77,9 +77,11 @@ const Shop = (props) => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-warning mb-5">
-          Load more
-        </button>
+        <div class="row justify-content-center">
+          <button onClick={loadMore} className="btn btn-warning mb-5 d-block">
+            Load more
+          </button>
+        </div>
       )
     );
   };

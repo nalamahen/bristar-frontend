@@ -74,7 +74,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/docs/catalog.pdf" target="_blank">
                     <span className="fa fa-chevron-right mr-2"></span>Catalog
                   </a>
                 </li>

@@ -1,9 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { contact } from '../../apis/apiUser';
 import Layout from './Layout';
 
 const Contact = () => {
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    subject: 'Query',
+    message: '',
+    error: '',
+    success: false,
+  });
+
+  const { name, email, subject, message, success, error } = values;
+
+  const handleChange = (name) => (e) => {
+    setValues({ ...values, error: false, [name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setValues({ ...values, error: false });
+    contact({ name, email, subject, message, error }).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false });
+      } else {
+        setValues({
+          ...values,
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          error: false,
+          success: true,
+        });
+      }
+    });
+  };
+
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? '' : 'none' }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-info"
+      style={{ display: success ? '' : 'none' }}
+    >
+      We have received your message and would like to thank you for writing to
+      us. If your inquiry is urgent, please use the telephone number listed
+      above to talk to us. Otherwise, we will reply by email as soon as
+      possible.
+    </div>
+  );
+
   return (
     <Layout
       title="Contact Us"
@@ -71,9 +128,11 @@ const Contact = () => {
                 <div className="row no-gutters">
                   <div className="col-md-12">
                     <div className="contact-wrap w-100 p-md-5 p-4">
+                      {showError()}
+                      {showSuccess()}
                       <h3 className="mb-4">Contact Us</h3>
                       <form
-                        method="POST"
+                        onSubmit={handleSubmit}
                         id="contactForm"
                         name="contactForm"
                         className="contactForm"
@@ -83,6 +142,7 @@ const Contact = () => {
                             <div className="form-group">
                               <label className="label">Full Name</label>
                               <input
+                                onChange={handleChange('name')}
                                 type="text"
                                 className="form-control"
                                 name="name"
@@ -95,6 +155,7 @@ const Contact = () => {
                             <div className="form-group">
                               <label className="label">Email Address</label>
                               <input
+                                onChange={handleChange('email')}
                                 type="email"
                                 className="form-control"
                                 name="email"
@@ -107,6 +168,7 @@ const Contact = () => {
                             <div className="form-group">
                               <label className="label">Subject</label>
                               <input
+                                onChange={handleChange('subject')}
                                 type="text"
                                 className="form-control"
                                 name="subject"
@@ -119,6 +181,7 @@ const Contact = () => {
                             <div className="form-group">
                               <label className="label">Message</label>
                               <textarea
+                                onChange={handleChange('message')}
                                 name="message"
                                 className="form-control"
                                 id="message"
@@ -134,7 +197,6 @@ const Contact = () => {
                                 type="submit"
                                 value="Send Message"
                                 className="btn btn-primary"
-                                disabled
                               />
                               <div className="submitting"></div>
                             </div>

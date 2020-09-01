@@ -234,6 +234,13 @@ const Home = () => {
               />
             ))}
           </div>
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <Link to="/shop" class="btn btn-primary d-block">
+                View More Products <span class="fa fa-long-arrow-right"></span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>

@@ -56,3 +56,20 @@ export const getPurchaseHistory = (userId, token) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const contact = (userQueryDetails) => {
+  return fetch(`${API}/contact`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userQueryDetails),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
