@@ -9,7 +9,7 @@ const AboutUs = () => {
       description="Bristar online Liguor Store"
       className="container-fluid"
     >
-      <section class="ftco-section bg-light">
+      <section className="ftco-section bg-light">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-12">

@@ -20,12 +20,12 @@ const HomeHeroWrapper = () => {
                 <Link to="/shop" className="btn btn-primary py-2 px-4">
                   Shop Now
                 </Link>
-                <a
-                  href="/"
+                <Link
+                  to="/about"
                   className="btn btn-white btn-outline-white py-2 px-4"
                 >
                   Read more
-                </a>
+                </Link>
               </p>
             </div>
           </div>
