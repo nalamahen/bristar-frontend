@@ -6,10 +6,8 @@ import { Redirect } from 'react-router-dom';
 import { getCategories } from '../../apis/apiCore';
 
 //Components
-import Layout from './Layout';
-import Card from './Card';
 
-const SearchBox = ({ props }) => {
+const SearchBox = () => {
   const [data, setData] = useState({
     categories: [],
     category: 'All',

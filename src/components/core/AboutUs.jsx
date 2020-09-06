@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollTop from 'react-scroll-to-top';
 
 import Layout from './Layout';
 
@@ -46,6 +47,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

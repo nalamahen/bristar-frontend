@@ -1,5 +1,6 @@
 // Libs
 import React, { useState, useEffect } from 'react';
+import ScrollTop from 'react-scroll-to-top';
 
 //Helper methods
 import { isAuthenticated } from '../../auth';
@@ -76,6 +77,7 @@ const ManageProducts = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

@@ -1,5 +1,6 @@
 // Lib
 import React, { useState, useEffect } from 'react';
+import ScrollTop from 'react-scroll-to-top';
 
 // Helpers
 import {
@@ -160,6 +161,7 @@ const Shop = (props) => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

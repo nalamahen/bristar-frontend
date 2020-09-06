@@ -19,17 +19,15 @@ const Footer = () => {
                 delivery as standard!
               </p>
               <ul className="ftco-footer-social list-unstyled mt-2">
-                <li className="ftco-animate">
-                  <a href="#">
-                    <span className="fa fa-twitter"></span>
-                  </a>
-                </li>
-                <li className="ftco-animate">
-                  <a href="#">
+                <li>
+                  <a
+                    href="https://www.facebook.com/Bristar-Liquor-Store-105638081269966/?modal=admin_todo_tour"
+                    target="blank"
+                  >
                     <span className="fa fa-facebook"></span>
                   </a>
                 </li>
-                <li className="ftco-animate">
+                <li>
                   <a href="#">
                     <span className="fa fa-instagram"></span>
                   </a>
@@ -79,15 +77,15 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/contact">
                     <span className="fa fa-chevron-right mr-2"></span>Contact us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/terms">
                     <span className="fa fa-chevron-right mr-2"></span>Term &amp;
                     Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

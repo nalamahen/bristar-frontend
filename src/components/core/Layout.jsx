@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Topbar from './Topbar';
 import Menu from './Menu';
@@ -20,6 +22,7 @@ const Layout = ({
       <Topbar />
       <Menu />
       {home ? <HomeHeroWrapper /> : <HeroWrapper title={title} />}
+      <ToastContainer />
       {children}
       <Footer />
     </React.Fragment>

@@ -19,7 +19,7 @@ const Menu = ({ history }) => {
         <Link to="/">
           <img src="/images/logo-small-transparent.png" alt="Bristar" />
         </Link>
-        <span style={{ color: 'orange' }}>Liquor&nbsp;Store</span>
+        <span style={{ color: 'rgb(255, 153, 0)' }}>Liquor&nbsp;Store</span>
         <div className="order-lg-last btn-group">
           <Link
             to="/cart"

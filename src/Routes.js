@@ -20,11 +20,15 @@ import Product from './components/core/Product';
 import Profile from './components/user/Profile';
 import Signin from './components/user/Signin';
 import Signup from './components/user/Signup';
+import Terms from './components/core/Terms';
 import UpdateProduct from './components/admin/UpdateProduct';
+
+import ScrollToTop from './components/core/ScrollToTop';
 
 const Routes = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/shop" exact component={Shop} />
@@ -58,6 +62,7 @@ const Routes = () => {
         <Route path="/contact" exact component={Contact} />
         <Route path="/about" exact component={AboutUs} />
         <Route path="/delivery-faq" exact component={DeliveryInofAndFaq} />
+        <Route path="/terms" exact component={Terms} />
       </Switch>
     </BrowserRouter>
   );

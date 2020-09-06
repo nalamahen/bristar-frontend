@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import ScrollTop from 'react-scroll-to-top';
 
 import Layout from '../core/Layout';
 import { signin, authenticate, isAuthenticated } from '../../auth';
@@ -121,6 +122,7 @@ const Signin = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
       {redirectUser()}
     </Layout>
   );

@@ -1,6 +1,8 @@
 // Libs
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import ScrollTop from 'react-scroll-to-top';
 
 //Helper methods
 import { getProducts } from '../../apis/apiCore';
@@ -34,9 +36,16 @@ const Home = () => {
     });
   };
 
+  const showError = () => {
+    if (error) {
+      toast.error('Something wrong happend, please try again later!');
+    }
+  };
+
   useEffect(() => {
     loadProductsByArrival();
     loadProductsBySell();
+    showError();
   }, []);
 
   return (
@@ -95,7 +104,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       <section className="ftco-section ftco-no-pb">
         <div className="container">
           <div className="row">
@@ -243,6 +251,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

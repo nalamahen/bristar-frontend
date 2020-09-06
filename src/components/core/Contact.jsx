@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ScrollTop from 'react-scroll-to-top';
 
 import { contact } from '../../apis/apiUser';
 import Layout from './Layout';
@@ -216,6 +217,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

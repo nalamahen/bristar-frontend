@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import ScrollTop from 'react-scroll-to-top';
 
 import {
   listOrders,
@@ -154,6 +155,7 @@ const Orders = () => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };

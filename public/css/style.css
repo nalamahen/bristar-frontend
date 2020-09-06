@@ -618,7 +618,7 @@ pre code {
   margin-left: 0;
 }
 .no-gutters > .col,
-.no-gutters > [class*='col-'] {
+.no-gutters > [10*='col-'] {
   padding-right: 0;
   padding-left: 0;
 }
@@ -10927,7 +10927,7 @@ h5,
   right: 0;
   bottom: 0;
   content: '';
-  opacity: 0.4;
+  opacity: 0.3;
   background: #000000;
 }
 .hero-wrap .slider-text {

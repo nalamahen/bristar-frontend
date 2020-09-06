@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ScrollTop from 'react-scroll-to-top';
 
 //Helper methods
 import { getListOfProducts } from '../../apis/apiCore';
@@ -55,6 +56,7 @@ const Search = ({ match }) => {
           </div>
         </div>
       </section>
+      <ScrollTop mooth color="#dc3545" />
     </Layout>
   );
 };
