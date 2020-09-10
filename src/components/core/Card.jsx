@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import moment from 'moment';
-
-import { API } from '../../config';
 
 import {
   addItem,
@@ -10,7 +7,6 @@ import {
   removeItem,
   updateItem,
 } from '../../utils/cartHelpers';
-import ShowImage from './ShowImage';
 
 const Card = ({
   product,
@@ -27,17 +23,6 @@ const Card = ({
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
 
-  const showViewButton = (showProductViewLink) => {
-    return (
-      showProductViewLink && (
-        <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">
-            View Product
-          </button>
-        </Link>
-      )
-    );
-  };
   const addToCart = () => {
     // console.log('added');
     addItem(product, setRedirect(false));
@@ -49,13 +34,13 @@ const Card = ({
     }
   };
 
-  const showStock = (quantity) => {
-    return quantity > 0 ? (
-      <span className="badge badge-primary badge-pill">In Stock </span>
-    ) : (
-      <span className="badge badge-primary badge-pill">Out of Stock </span>
-    );
-  };
+  // const showStock = (quantity) => {
+  //   return quantity > 0 ? (
+  //     <span className="badge badge-primary badge-pill">In Stock </span>
+  //   ) : (
+  //     <span className="badge badge-primary badge-pill">Out of Stock </span>
+  //   );
+  // };
 
   const handleChange = (productId) => (event) => {
     setRun(!run); // run useEffect in parent Cart

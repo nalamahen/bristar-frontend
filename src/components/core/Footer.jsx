@@ -10,9 +10,7 @@ const Footer = () => {
           <div className="col-sm-12 col-md">
             <div className="ftco-footer-widget mb-4">
               <h2 className="ftco-heading-2 logo">
-                <a href="/">
-                  Bristar Liquor <span>Store</span>
-                </a>
+                <a href="/">Bristar Liquor Store</a>
               </h2>
               <p>
                 At Bristar.be, we workd hard to deliver a great service and fast
@@ -28,7 +26,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="https://www.instagram.com/bristar_liquer_store/">
                     <span className="fa fa-instagram"></span>
                   </a>
                 </li>

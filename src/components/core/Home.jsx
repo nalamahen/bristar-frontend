@@ -1,11 +1,11 @@
 // Libs
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import ScrollTop from 'react-scroll-to-top';
 
 //Helper methods
 import { getProducts } from '../../apis/apiCore';
+import { showError } from '../../utils/helperMetohds';
 
 //Components
 import Card from './Card';
@@ -36,17 +36,11 @@ const Home = () => {
     });
   };
 
-  const showError = () => {
-    if (error) {
-      toast.error('Something wrong happend, please try again later!');
-    }
-  };
-
   useEffect(() => {
     loadProductsByArrival();
     loadProductsBySell();
-    showError();
-  }, []);
+    showError(error);
+  }, [error]);
 
   return (
     <Layout
@@ -131,7 +125,7 @@ const Home = () => {
                   <strong className="number" data-number="115">
                     15
                   </strong>
-                  <span>Years of Experience In Business</span>
+                  <span>&nbsp;Years of Experience In Business</span>
                 </p>
               </div>
             </div>
@@ -242,16 +236,17 @@ const Home = () => {
               />
             ))}
           </div>
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <Link to="/shop" class="btn btn-primary d-block">
-                View More Products <span class="fa fa-long-arrow-right"></span>
+          <div className="row justify-content-center">
+            <div className="col-md-4">
+              <Link to="/shop" className="btn btn-primary d-block">
+                View More Products{' '}
+                <span className="fa fa-long-arrow-right"></span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <ScrollTop mooth color="#dc3545" />
+      <ScrollTop smooth color="#dc3545" />
     </Layout>
   );
 };

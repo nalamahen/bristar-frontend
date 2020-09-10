@@ -1,5 +1,5 @@
 // Libs
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Helper methods
@@ -33,10 +33,7 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     categories,
-    category,
-    shipping,
     quantity,
-    sale,
     loading,
     error,
     createdProduct,
@@ -83,7 +80,7 @@ const UpdateProduct = ({ match }) => {
 
   useEffect(() => {
     init(match.params.productId);
-  }, []);
+  }, [init, match.params.productId]);
 
   const handleChange = (name) => (event) => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;

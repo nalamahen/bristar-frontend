@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import moment from 'moment';
 import ScrollTop from 'react-scroll-to-top';
 
@@ -16,7 +16,7 @@ const Orders = () => {
 
   const { user, token } = isAuthenticated();
 
-  const loadOrders = () => {
+  const loadOrders = useCallback(() => {
     listOrders(user._id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
@@ -24,9 +24,9 @@ const Orders = () => {
         setOrders(data);
       }
     });
-  };
+  }, [user._id, token]);
 
-  const loadStatusValues = () => {
+  const loadStatusValues = useCallback(() => {
     getStatusValues(user._id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
@@ -34,12 +34,12 @@ const Orders = () => {
         setStatusValues(data);
       }
     });
-  };
+  }, [user._id, token]);
 
   useEffect(() => {
     loadOrders();
     loadStatusValues();
-  }, []);
+  }, [loadStatusValues, loadOrders]);
 
   const showOrderLength = () => {
     if (orders.length > 0) {
@@ -78,7 +78,6 @@ const Orders = () => {
 
   const handleStatusChange = (e, orderId) => {
     updateOrderStatus(user._id, token, orderId, e.target.value).then((data) => {
-      console.log('data', data);
       if (data.error) {
         console.log('Status update failed');
       } else {
@@ -92,7 +91,7 @@ const Orders = () => {
       title="View Orders"
       description={`G'day ${user.name}, you can manage all the orders`}
     >
-      <section class="ftco-section bg-light">
+      <section className="ftco-section bg-light">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-12">
@@ -155,7 +154,7 @@ const Orders = () => {
           </div>
         </div>
       </section>
-      <ScrollTop mooth color="#dc3545" />
+      <ScrollTop smooth color="#dc3545" />
     </Layout>
   );
 };

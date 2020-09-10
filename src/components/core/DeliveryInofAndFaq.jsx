@@ -115,7 +115,7 @@ const DeliveryInofAndFaq = () => {
           </div>
         </div>
       </section>
-      <ScrollTop mooth color="#dc3545" />
+      <ScrollTop smooth color="#dc3545" />
     </Layout>
   );
 };

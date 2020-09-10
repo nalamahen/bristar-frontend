@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Helper methods
-import { getProducts } from '../../apis/apiCore';
 import { isAuthenticated } from '../../auth';
 import {
   getUser,
@@ -24,7 +23,7 @@ const Profile = ({ match }) => {
   });
 
   const { token } = isAuthenticated();
-  const { name, email, password, error, success } = values;
+  const { name, email, password, success } = values;
 
   const init = (userId) => {
     getUser(userId, token).then((data) => {

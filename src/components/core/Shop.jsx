@@ -3,12 +3,9 @@ import React, { useState, useEffect } from 'react';
 import ScrollTop from 'react-scroll-to-top';
 
 // Helpers
-import {
-  getFilteredProducts,
-  getCategories,
-  getCategoryByName,
-} from '../../apis/apiCore';
+import { getFilteredProducts, getCategories } from '../../apis/apiCore';
 import { prices } from '../../utils/fixedPrices';
+import { showError } from '../../utils/helperMetohds';
 
 //Components
 import Card from './Card';
@@ -21,7 +18,6 @@ const Shop = (props) => {
     filters: { category: [], price: [] },
   });
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState({});
   const [error, setError] = useState([]);
   const [limit, setLimit] = useState(15);
   const [skip, setSkip] = useState(0);
@@ -36,16 +32,6 @@ const Shop = (props) => {
         setCategories(data);
       }
     });
-
-    const getCategoryByName = (name) => {
-      getCategoryByName(name).then((data) => {
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setCategory(data);
-        }
-      });
-    };
   };
 
   const loadFilteredResults = (newFilters) => {
@@ -78,7 +64,7 @@ const Shop = (props) => {
     return (
       size > 0 &&
       size >= limit && (
-        <div class="row justify-content-center">
+        <div className="row justify-content-center">
           <button onClick={loadMore} className="btn btn-warning mb-5 d-block">
             Load more
           </button>
@@ -90,6 +76,7 @@ const Shop = (props) => {
   useEffect(() => {
     init();
     loadFilteredResults(myFilters.filters);
+    showError(error);
   }, []);
 
   const handleFilters = (filters, filterBy) => {
@@ -161,7 +148,7 @@ const Shop = (props) => {
           </div>
         </div>
       </section>
-      <ScrollTop mooth color="#dc3545" />
+      <ScrollTop smooth color="#dc3545" />
     </Layout>
   );
 };

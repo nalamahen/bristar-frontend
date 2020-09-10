@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 //Helper methods
 import { getProduct, listRelated } from '../../apis/apiCore';
+import { showError } from '../../utils/helperMetohds';
 
 //Components
 import Card from './Card';
@@ -38,7 +39,8 @@ const Product = (props) => {
   useEffect(() => {
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
-  }, [props, count]);
+    showError(error);
+  }, [props, count, error]);
 
   const addToCart = () => {
     addItem(product, setRedirect(true));
@@ -111,20 +113,26 @@ const Product = (props) => {
                 </div>
               </div>
               <p>
-                <a
+                {/* <a
                   href="#"
                   onClick={addToCart}
                   className="btn btn-primary py-3 px-5 mr-2"
                 >
                   Add to Cart
-                </a>
-                <a
-                  href="#"
+                </a> */}
+                <button
+                  className="btn btn-primary mt-2 mb-2 mr-2"
                   onClick={addToCart}
-                  className="btn btn-primary py-3 px-5"
+                >
+                  Add to Cart
+                </button>
+
+                <button
+                  onClick={addToCart}
+                  className="btn btn-primary mt-2 mb-2 mr-2"
                 >
                   Buy now
-                </a>
+                </button>
               </p>
             </div>
           </div>

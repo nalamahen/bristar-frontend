@@ -85,7 +85,7 @@ const Signin = () => {
                 <div className="row align-items-end">
                   <div className="col-md-12">
                     <div className="form-group">
-                      <label for="emailaddress">Email Address</label>
+                      <label>Email Address</label>
                       <input
                         type="email"
                         className="form-control"
@@ -98,7 +98,7 @@ const Signin = () => {
                   <div className="w-100"></div>
                   <div className="col-md-12">
                     <div className="form-group">
-                      <label for="emailaddress">Password</label>
+                      <label>Password</label>
                       <input
                         type="password"
                         className="form-control"
@@ -122,7 +122,7 @@ const Signin = () => {
           </div>
         </div>
       </section>
-      <ScrollTop mooth color="#dc3545" />
+      <ScrollTop smooth color="#dc3545" />
       {redirectUser()}
     </Layout>
   );

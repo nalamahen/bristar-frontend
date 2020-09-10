@@ -15,7 +15,7 @@ const SearchBox = () => {
     searched: false,
   });
 
-  const { categories, category, search, searched } = data;
+  const { categories, category, search } = data;
 
   const loadCategories = () => {
     getCategories().then((data) => {

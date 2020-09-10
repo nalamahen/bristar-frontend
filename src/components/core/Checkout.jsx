@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import {
   createOrder,
   getBraintreeClientToken,
-  processPayment,
+  //processPayment,
 } from '../../apis/apiCore';
 import { emptyCart } from '../../utils/cartHelpers';
 
@@ -41,7 +41,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
   useEffect(() => {
     getToken(userId, token);
-  }, []);
+  }, [userId, token]);
 
   const handleAddress = (event) => {
     setData({ ...data, address: event.target.value });
@@ -94,7 +94,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
       });
   };
 
-  const buy = () => {
+  /* const buy = () => {
     setData({ loading: true });
     // send the nonce to your server
     // nonce = data.instance.requestPaymentMethod()
@@ -154,7 +154,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
         // console.log("dropin error: ", error);
         setData({ ...data, error: error.message });
       });
-  };
+  };*/
 
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: '' })}>

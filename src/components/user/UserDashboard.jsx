@@ -31,7 +31,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     init(_id, token);
-  }, []);
+  }, [_id, token]);
 
   const userLinks = () => {
     return (
@@ -103,7 +103,7 @@ const Dashboard = () => {
       description={`G'day ${name}!`}
       className="container-fluid"
     >
-      <section class="ftco-section bg-light">
+      <section className="ftco-section bg-light">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-m-3">{userLinks()}</div>
