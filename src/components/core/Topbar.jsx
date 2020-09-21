@@ -18,7 +18,7 @@ const Topbar = ({ history }) => {
               </a>
               <Link to="/">
                 <span className="fa mr-1"></span>
-                Free deliery order over &euro;20
+                Free delivery order over &euro;20
               </Link>
             </p>
           </div>

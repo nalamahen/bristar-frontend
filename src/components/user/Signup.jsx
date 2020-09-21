@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ScrollTop from 'react-scroll-to-top';
 
 import Layout from '../core/Layout';
+import Button from '../core/Button';
 import { signup } from '../../auth';
 
 const Signup = () => {
@@ -111,12 +112,12 @@ const Signup = () => {
                   </div>
 
                   <div className="w-100"></div>
-                  <button
+
+                  <Button
+                    label="submit"
                     onClick={handleSubmit}
                     className="btn btn-primary py-3 px-4"
-                  >
-                    Submit
-                  </button>
+                  />
                 </div>
               </form>
             </div>

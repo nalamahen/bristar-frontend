@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import { itemTotal } from '../../utils/cartHelpers';
 import { signout, isAuthenticated } from '../../auth';
+
+import CartDropdown from './CartDropdown';
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) return { color: '#ff9900' };
@@ -10,6 +12,8 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history }) => {
+  const [showCardDropdown, setShowCartDropdown] = useState(false);
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
@@ -21,16 +25,19 @@ const Menu = ({ history }) => {
         </Link>
         <span style={{ color: 'rgb(255, 153, 0)' }}>Liquor&nbsp;Store</span>
         <div className="order-lg-last btn-group">
-          <Link
-            to="/cart"
+          <div
+            onClick={() => setShowCartDropdown(!showCardDropdown)}
+            style={{ cursor: 'pointer' }}
             className="btn-cart dropdown-toggle dropdown-toggle-split"
           >
             <span className="flaticon-shopping-bag"></span>
             <div className="d-flex justify-content-center align-items-center">
               <small>{itemTotal()}</small>
             </div>
-          </Link>
+          </div>
         </div>
+        {showCardDropdown && <CartDropdown showCart={setShowCartDropdown} />}
+
         <button
           className="navbar-toggler collapsed"
           type="button"

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import ScrollTop from 'react-scroll-to-top';
 
 import Layout from '../core/Layout';
+import Button from '../core/Button';
 import { signin, authenticate, isAuthenticated } from '../../auth';
 
 const Signin = () => {
@@ -109,12 +110,11 @@ const Signin = () => {
                   </div>
 
                   <div className="w-100"></div>
-                  <button
-                    onClick={handleSubmit}
+                  <Button
+                    label="submt"
                     className="btn btn-primary py-3 px-4"
-                  >
-                    Submit
-                  </button>
+                    onClick={handleSubmit}
+                  />
                   <div className="w-100"></div>
                 </div>
               </form>
