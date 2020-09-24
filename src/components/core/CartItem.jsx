@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  getImageUrl,
-  getImageBackground,
-  removeItem,
-  updateItem,
-} from '../../utils/cartHelpers';
+import { getImageUrl } from '../../utils/cartHelpers';
 
 const CartItem = ({ product, setRun = (f) => f, run = undefined }) => {
   const [count, setCount] = useState(product.count);

@@ -191,3 +191,9 @@ select:focus {
   justify-content: center;
   padding: 10px 20px;
 }
+
+/* Make up arrow always visible */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
+}

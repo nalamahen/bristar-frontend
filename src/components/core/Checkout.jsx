@@ -33,7 +33,6 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
         console.log(data.error);
         setData({ ...data, error: data.error });
       } else {
-        console.log(data);
         setData({ clientToken: data.clientToken });
       }
     });

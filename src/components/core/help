@@ -1,0 +1,49 @@
+function add(x, y) {
+    return x + y;
+}
+
+function subtract(x, y)  {
+    return x - y;
+}
+ 
+function multiply(x, y)  {
+    return x * y;
+}
+
+let num1 = 0;
+let num2 = 0;
+
+console.log("Select operation.");
+console.log("1.Add");
+console.log("2.Subtract");
+console.log("3.Multiply");
+
+let True = 0; 
+
+  while (True)   {
+    
+   let choice = 0;
+    
+    choice = prompt("Enter choice(1/2/3): ");
+    
+    if (choice in ('1', '2', '3')); 
+    
+    
+        num1 = parseFloat(prompt("Enter first number: "));
+        num2 = parseFloat(prompt("Enter second number: "));
+
+        if (choice == '1')  {
+            print(num1, "+", num2, "=", add(num1, num2));
+}
+        else if (choice == '2')  {
+            print(num1, "-", num2, "=", subtract(num1, num2));
+}
+        else if (choice == '3')  {
+            print(num1, "*", num2, "=", multiply(num1, num2));
+}
+        break;
+       
+  }
+
+
+
