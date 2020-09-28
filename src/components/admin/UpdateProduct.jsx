@@ -240,7 +240,7 @@ const UpdateProduct = ({ match }) => {
       title="Add a new product"
       description={`G'day ${user.name}, ready to add a new product?`}
     >
-      <section class="ftco-section bg-light">
+      <section className="ftco-section bg-light">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-12">

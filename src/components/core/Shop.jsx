@@ -13,10 +13,11 @@ import Checkbox from './Checkbox';
 import Layout from './Layout';
 import RadioButton from './RadioButton';
 
-const Shop = (props) => {
+const Shop = () => {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] },
   });
+
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState([]);
   const [limit, setLimit] = useState(15);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import {
   addItem,
@@ -7,6 +8,9 @@ import {
   removeItem,
   updateItem,
 } from '../../utils/cartHelpers';
+
+//Actions
+import { addCartItem } from '../../redux/actions/cart';
 
 const Card = ({
   product,
@@ -19,6 +23,8 @@ const Card = ({
   setRun = (f) => f,
   run = undefined,
   // changeCartSize
+
+  addCartItem,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
@@ -26,6 +32,8 @@ const Card = ({
   const addToCart = () => {
     // console.log('added');
     addItem(product, setRedirect(false));
+
+    addCartItem(product);
   };
 
   const shouldRedirect = (redirect) => {
@@ -137,4 +145,8 @@ const Card = ({
   );
 };
 
-export default Card;
+const mapDispatchToProps = (dispatch) => ({
+  addCartItem: (item) => dispatch(addCartItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(Card);

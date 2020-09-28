@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { itemTotal } from '../../utils/cartHelpers';
 import { signout, isAuthenticated } from '../../auth';
+
+import { toggleCartHidden } from '../../redux/actions/cart';
 
 import CartDropdown from './CartDropdown';
 
@@ -11,9 +14,7 @@ const isActive = (history, path) => {
   return { color: '#ffffff' };
 };
 
-const Menu = ({ history }) => {
-  const [showCardDropdown, setShowCartDropdown] = useState(false);
-
+const Menu = ({ history, toggleCartHidden, hidden }) => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
@@ -26,7 +27,7 @@ const Menu = ({ history }) => {
         <span style={{ color: 'rgb(255, 153, 0)' }}>Liquor&nbsp;Store</span>
         <div className="order-lg-last btn-group">
           <div
-            onClick={() => setShowCartDropdown(!showCardDropdown)}
+            onClick={toggleCartHidden}
             style={{ cursor: 'pointer' }}
             className="btn-cart dropdown-toggle dropdown-toggle-split"
           >
@@ -36,7 +37,7 @@ const Menu = ({ history }) => {
             </div>
           </div>
         </div>
-        {showCardDropdown && <CartDropdown showCart={setShowCartDropdown} />}
+        {!hidden && <CartDropdown />}
 
         <button
           className="navbar-toggler collapsed"
@@ -153,4 +154,12 @@ const Menu = ({ history }) => {
   );
 };
 
-export default withRouter(Menu);
+const mapStateToProps = ({ cart: { hidden } }) => ({
+  hidden,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Menu));

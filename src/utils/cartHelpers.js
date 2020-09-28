@@ -102,3 +102,21 @@ export const getTotal = (products) => {
     return currentValue + nextValue.count * nextValue.price;
   }, 0);
 };
+
+/*** new method to addItem ****/
+
+export const addItemToCart = (cartItems, cartItemToAdd) => {
+  const cartItemExisits = cartItems.find(
+    (item) => item._id === cartItemToAdd._id
+  );
+
+  if (cartItemExisits) {
+    return cartItems.map((cartItem) =>
+      cartItem._id === cartItemToAdd._id
+        ? { ...cartItem, count: cartItem.count + 1 }
+        : cartItem
+    );
+  }
+
+  return [...cartItems, { ...cartItemToAdd, count: 1 }];
+};
