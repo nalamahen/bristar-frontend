@@ -2,10 +2,13 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { itemTotal } from '../../utils/cartHelpers';
 import { signout, isAuthenticated } from '../../auth';
 
 import { toggleCartHidden } from '../../redux/actions/cart';
+import {
+  selectCartItems,
+  selectCartItemsCount,
+} from '../../redux/selectors/cart';
 
 import CartDropdown from './CartDropdown';
 
@@ -14,7 +17,7 @@ const isActive = (history, path) => {
   return { color: '#ffffff' };
 };
 
-const Menu = ({ history, toggleCartHidden, hidden }) => {
+const Menu = ({ history, toggleCartHidden, hidden, itemCount, cartItems }) => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
@@ -33,7 +36,8 @@ const Menu = ({ history, toggleCartHidden, hidden }) => {
           >
             <span className="flaticon-shopping-bag"></span>
             <div className="d-flex justify-content-center align-items-center">
-              <small>{itemTotal()}</small>
+              {/* <small>{itemTotal()}</small> */}
+              <small>{itemCount}</small>
             </div>
           </div>
         </div>
@@ -154,8 +158,9 @@ const Menu = ({ history, toggleCartHidden, hidden }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { hidden } }) => ({
-  hidden,
+const mapStateToProps = (state) => ({
+  hidden: state.cart.hidden,
+  itemCount: selectCartItemsCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

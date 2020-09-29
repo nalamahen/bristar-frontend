@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,17 +7,13 @@ import { getCart } from '../../utils/cartHelpers';
 
 // Actions
 import { toggleCartHidden } from '../../redux/actions/cart';
+import { selectCartItems } from '../../redux/selectors/cart';
 
 import Button from '../core/Button';
 import CartItem from './CartItem';
 
-const CartDropdown = ({ toggleCartHidden }) => {
-  const [items, setItems] = useState([]);
+const CartDropdown = ({ cartItems, toggleCartHidden }) => {
   const history = useHistory();
-
-  useEffect(() => {
-    setItems(getCart());
-  }, []);
 
   const handleClick = () => {
     toggleCartHidden();
@@ -26,10 +22,10 @@ const CartDropdown = ({ toggleCartHidden }) => {
 
   return (
     <div className="cart-dropdown">
-      {items.length ? (
+      {cartItems.length ? (
         <React.Fragment>
           <div className="cart-dropdown-item-container">
-            {items.map((item) => (
+            {cartItems.map((item) => (
               <CartItem key={item._id} product={item} />
             ))}
           </div>
@@ -40,14 +36,25 @@ const CartDropdown = ({ toggleCartHidden }) => {
           />
         </React.Fragment>
       ) : (
-        <div className="cart-dropdwon-empty-message">Your cart is empty</div>
+        <React.Fragment>
+          <div className="cart-dropdwon-empty-message">Your cart is empty</div>
+          <Button
+            onClick={handleClick}
+            label="Go To Checkout"
+            className="btn btn-primary py-3 px-4"
+          />
+        </React.Fragment>
       )}
     </div>
   );
 };
 
+const mapStateToProps = (state) => ({
+  cartItems: selectCartItems(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-export default connect(null, mapDispatchToProps)(CartDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);

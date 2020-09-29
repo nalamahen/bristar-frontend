@@ -10,7 +10,7 @@ import {
 } from '../../utils/cartHelpers';
 
 //Actions
-import { addCartItem } from '../../redux/actions/cart';
+import { addCartItem, removeCartItem } from '../../redux/actions/cart';
 
 const Card = ({
   product,
@@ -25,6 +25,7 @@ const Card = ({
   // changeCartSize
 
   addCartItem,
+  removeCartItem,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
@@ -80,6 +81,7 @@ const Card = ({
       showRemoveProductButton && (
         <button
           onClick={() => {
+            removeCartItem(product);
             removeItem(product._id);
             setRun(!run); // run useEffect in parent Cart
           }}
@@ -147,6 +149,7 @@ const Card = ({
 
 const mapDispatchToProps = (dispatch) => ({
   addCartItem: (item) => dispatch(addCartItem(item)),
+  removeCartItem: (item) => dispatch(removeCartItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(Card);

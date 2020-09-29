@@ -16,6 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     setItems(getCart());
+    console.log('redering useEffect in cart.....');
   }, [run]);
 
   const showItems = (items) => {
