@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { signout, isAuthenticated } from '../../auth';
 
 import { toggleCartHidden } from '../../redux/actions/cart';
 import {
-  selectCartItems,
   selectCartItemsCount,
+  selectCartItems,
+  selectCartHidden,
 } from '../../redux/selectors/cart';
 
 import CartDropdown from './CartDropdown';
@@ -17,7 +19,7 @@ const isActive = (history, path) => {
   return { color: '#ffffff' };
 };
 
-const Menu = ({ history, toggleCartHidden, hidden, itemCount, cartItems }) => {
+const Menu = ({ history, toggleCartHidden, hidden, itemCount }) => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
@@ -158,9 +160,9 @@ const Menu = ({ history, toggleCartHidden, hidden, itemCount, cartItems }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  hidden: state.cart.hidden,
-  itemCount: selectCartItemsCount(state),
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCartHidden,
+  itemCount: selectCartItemsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

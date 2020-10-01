@@ -14,7 +14,12 @@ import { emptyCart } from '../../utils/cartHelpers';
 import { isAuthenticated } from '../../auth';
 import { Link } from 'react-router-dom';
 
-const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
+const Checkout = ({
+  products,
+  setRun = (f) => f,
+  run = undefined,
+  cartTotal,
+}) => {
   const [data, setData] = useState({
     loading: false,
     success: false,
@@ -159,13 +164,13 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     <div onBlur={() => setData({ ...data, error: '' })}>
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          <div className="gorm-group mb-3">
+          <div className="form-group mb-3">
             <label className="text-muted">Delivery address:</label>
             <textarea
               onChange={handleAddress}
               className="form-control"
               value={data.address}
-              placeholder="Type your delivery address here..."
+              placeholder="Type your delivery address and contact number here..."
             />
           </div>
 
@@ -214,7 +219,9 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   return (
     <div>
       <p className="d-flex">
-        <span>Cart Total:</span>&nbsp;<span>&euro;{getTotal(products)}</span>
+        {/* <span>Cart Total:</span>&nbsp;<span>&euro;{getTotal(products)}</span> */}
+        <span>Cart Total:</span>
+        <span>{cartTotal}</span>
       </p>
       {showLoading(data.loading)}
       {showSuccess(data.success)}

@@ -12,39 +12,30 @@ import { selectCartItems } from '../../redux/selectors/cart';
 import Button from '../core/Button';
 import CartItem from './CartItem';
 
-const CartDropdown = ({ cartItems, toggleCartHidden }) => {
+const CartDropdown = ({ cartItems, dispatch }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    toggleCartHidden();
     history.push('/cart');
+    dispatch(toggleCartHidden());
   };
 
   return (
     <div className="cart-dropdown">
       {cartItems.length ? (
-        <React.Fragment>
-          <div className="cart-dropdown-item-container">
-            {cartItems.map((item) => (
-              <CartItem key={item._id} product={item} />
-            ))}
-          </div>
-          <Button
-            onClick={handleClick}
-            label="Go To Checkout"
-            className="btn btn-primary py-3 px-4"
-          />
-        </React.Fragment>
+        <div className="cart-dropdown-item-container">
+          {cartItems.map((item) => (
+            <CartItem key={item._id} product={item} />
+          ))}
+        </div>
       ) : (
-        <React.Fragment>
-          <div className="cart-dropdwon-empty-message">Your cart is empty</div>
-          <Button
-            onClick={handleClick}
-            label="Go To Checkout"
-            className="btn btn-primary py-3 px-4"
-          />
-        </React.Fragment>
+        <div className="cart-dropdwon-empty-message">Your cart is empty</div>
       )}
+      <Button
+        onClick={handleClick}
+        label="Go To Checkout"
+        className="btn btn-outline-danger mt-2 mb-2"
+      />
     </div>
   );
 };
@@ -53,8 +44,4 @@ const mapStateToProps = (state) => ({
   cartItems: selectCartItems(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);
+export default connect(mapStateToProps)(CartDropdown);

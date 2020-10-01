@@ -1,39 +1,41 @@
 // Libs
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 //Helper methods
 import { getCart } from '../../utils/cartHelpers';
+
+import { selectCartItems, selectCartTotal } from '../../redux/selectors/cart';
 
 //Components
 import Card from './Card';
 import Layout from './Layout';
 import Checkout from './Checkout';
+import CheckoutItem from './CheckoutItem';
 
-const Cart = () => {
-  const [items, setItems] = useState([]);
-  const [run, setRun] = useState(false);
-
+const Cart = ({ cartItems, cartTotal }) => {
   useEffect(() => {
-    setItems(getCart());
     console.log('redering useEffect in cart.....');
-  }, [run]);
+  }, []);
 
-  const showItems = (items) => {
+  const showItems = (cartItems) => {
     return (
       <div>
-        <h2>Your cart has {`${items.length} items`}</h2>
+        <h2>Your cart has {`${cartItems.length} items`}</h2>
         <hr />
-        {items.map((product) => (
-          <Card
-            key={product._id}
-            product={product}
-            showAddToCartButton={false}
-            cartUpdate={true}
-            showRemoveProductButton={true}
-            setRun={setRun}
-            run={run}
-          />
+        {cartItems.map((item) => (
+          // <Card
+          //   key={product._id}
+          //   product={product}
+          //   showAddToCartButton={false}
+          //   cartUpdate={true}
+          //   showRemoveProductButton={true}
+          //   setRun={setRun}
+          //   run={run}
+          // />
+          <CheckoutItem item={item} />
         ))}
       </div>
     );
@@ -55,13 +57,13 @@ const Cart = () => {
         <div className="container">
           <div className="row">
             <div className="col-6">
-              {items.length > 0 ? showItems(items) : noItemsMessage()}
+              {cartItems.length > 0 ? showItems(cartItems) : noItemsMessage()}
             </div>
 
             <div className="col-6">
               <h2 className="mb-4">Your cart summary</h2>
               <hr />
-              <Checkout products={items} />
+              <Checkout products={cartItems} cartTotal={cartTotal} />
             </div>
           </div>
         </div>
@@ -70,4 +72,9 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  cartTotal: selectCartTotal,
+});
+
+export default connect(mapStateToProps)(Cart);
