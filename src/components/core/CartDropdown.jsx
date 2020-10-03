@@ -1,15 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 // Actions
-import { toggleCartHidden } from '../../redux/actions/cart';
-import { selectCartItems } from '../../redux/selectors/cart';
+import { toggleCartHidden, hideCartDropdown } from '../../redux/actions/cart';
+import { selectCartItems, selectCartTotal } from '../../redux/selectors/cart';
 
 import Button from '../core/Button';
 import CartItem from './CartItem';
 
-const CartDropdown = ({ cartItems, dispatch }) => {
+const CartDropdown = ({ cartItems, cartTotal, dispatch }) => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -20,11 +21,20 @@ const CartDropdown = ({ cartItems, dispatch }) => {
   return (
     <div className="cart-dropdown">
       {cartItems.length ? (
-        <div className="cart-dropdown-item-container">
-          {cartItems.map((item) => (
-            <CartItem key={item._id} product={item} />
-          ))}
-        </div>
+        <>
+          <div
+            onClick={() => dispatch(hideCartDropdown())}
+            className="cart-dropdown-delete"
+          >
+            &#10005;
+          </div>
+          <div className="cart-dropdown-item-container">
+            {cartItems.map((item) => (
+              <CartItem key={item._id} product={item} />
+            ))}
+            <div className="cart-dropdown-total">Total: &euro;{cartTotal}</div>
+          </div>
+        </>
       ) : (
         <div className="cart-dropdwon-empty-message">Your cart is empty</div>
       )}
@@ -37,8 +47,9 @@ const CartDropdown = ({ cartItems, dispatch }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cartItems: selectCartItems(state),
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  cartTotal: selectCartTotal,
 });
 
 export default connect(mapStateToProps)(CartDropdown);

@@ -5,9 +5,20 @@ import { connect } from 'react-redux';
 import { getImageBackground } from '../../utils/cartHelpers';
 
 //Actions
-import { addCartItem } from '../../redux/actions/cart';
+import { addCartItem, toggleCartHidden } from '../../redux/actions/cart';
 
-const Card = ({ product, promotion = '', displayColumn = 4, addCartItem }) => {
+const Card = ({
+  product,
+  promotion = '',
+  displayColumn = 4,
+  addCartItem,
+  toggleCartHidden,
+}) => {
+  const addItemToCart = () => {
+    toggleCartHidden();
+    addCartItem(product);
+  };
+
   return (
     <div className={`col-md-${displayColumn} d-flex`}>
       <div className="product ftco-animate fadeInUp ftco-animated">
@@ -20,7 +31,7 @@ const Card = ({ product, promotion = '', displayColumn = 4, addCartItem }) => {
               <Link
                 to="#"
                 className="d-flex align-items-center justify-content-center"
-                onClick={() => addCartItem(product)}
+                onClick={addItemToCart}
               >
                 <span className="flaticon-shopping-bag"></span>
               </Link>
@@ -53,6 +64,7 @@ const Card = ({ product, promotion = '', displayColumn = 4, addCartItem }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addCartItem: (item) => dispatch(addCartItem(item)),
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
 export default connect(null, mapDispatchToProps)(Card);

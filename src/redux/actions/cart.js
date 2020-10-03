@@ -4,9 +4,15 @@ import {
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
   EMPTY_CART,
+  HIDE_DROP_DOWN,
 } from './types';
 
 export const toggleCartHidden = () => ({ type: TOGGLE_CART_HIDDEN });
+
+export const hideCartDropdown = () => ({
+  type: HIDE_DROP_DOWN,
+  payload: true,
+});
 
 export const addCartItem = (item) => ({
   type: ADD_ITEM,

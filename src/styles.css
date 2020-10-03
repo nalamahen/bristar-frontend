@@ -192,6 +192,20 @@ select:focus {
   padding: 10px 20px;
 }
 
+.cart-dropdown-delete {
+  margin-top: -15px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.cart-dropdown-total {
+  margin: -30px;
+  padding: 0 60px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 /* Checkout Item */
 
 .checkout-container {
