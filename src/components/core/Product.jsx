@@ -1,22 +1,26 @@
 // Libs
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //Helper methods
 import { getProduct, listRelated } from '../../apis/apiCore';
 import { showError } from '../../utils/helperMetohds';
+import { getImageUrl } from '../../utils/cartHelpers';
+
+//Actions
+import { addCartItem } from '../../redux/actions/cart';
 
 //Components
 import Card from './Card';
 import Layout from './Layout';
-import { addItem, getImageUrl, updateItem } from '../../utils/cartHelpers';
 
-const Product = (props) => {
+const Product = ({ match, addCartItem }) => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [error, setError] = useState(false);
-  const [redirect, setRedirect] = useState(false);
-  const [count, setCount] = useState(0);
+
+  const history = useHistory();
 
   const loadSingleProduct = (productId) => {
     getProduct(productId).then((data) => {
@@ -37,29 +41,14 @@ const Product = (props) => {
   };
 
   useEffect(() => {
-    const productId = props.match.params.productId;
+    const productId = match.params.productId;
     loadSingleProduct(productId);
     showError(error);
-  }, [props, count, error]);
+  }, [match, error]);
 
   const addToCart = () => {
-    addItem(product, setRedirect(true));
-  };
-
-  const handleChange = (productId) => (event) => {
-    if (event.target.value > 1) {
-      addItem(product, setRedirect(false));
-    }
-    setCount(event.target.value < 1 ? 1 : event.target.value);
-    if (event.target.value >= 1) {
-      updateItem(productId, event.target.value);
-    }
-  };
-
-  const shouldRedirect = (redirect) => {
-    if (redirect) {
-      return <Redirect to="/cart" />;
-    }
+    addCartItem(product);
+    history.push('/cart');
   };
 
   return (
@@ -70,7 +59,6 @@ const Product = (props) => {
       }
       className="container-fluid"
     >
-      {shouldRedirect(redirect)}
       <section className="ftco-section">
         <div className="container">
           <div className="row">
@@ -99,27 +87,12 @@ const Product = (props) => {
               <p>{product.description}</p>
 
               <div className="row mt-4">
-                <div className="input-group col-md-6 d-flex mb-3">
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={count}
-                    onChange={handleChange(product._id)}
-                  />
-                </div>
                 <div className="w-100"></div>
                 <div className="col-md-12">
                   <p>{product.quantity} piece available</p>
                 </div>
               </div>
               <p>
-                {/* <a
-                  href="#"
-                  onClick={addToCart}
-                  className="btn btn-primary py-3 px-5 mr-2"
-                >
-                  Add to Cart
-                </a> */}
                 <button
                   className="btn btn-primary mt-2 mb-2 mr-2"
                   onClick={addToCart}
@@ -158,4 +131,8 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+const mapDispatchToProps = (dispatch) => ({
+  addCartItem: (item) => dispatch(addCartItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(Product);

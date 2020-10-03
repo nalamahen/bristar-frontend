@@ -1,5 +1,6 @@
 // Libs
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 //import DropIn from 'braintree-web-drop-in-react';
 
 //Helper methods
@@ -8,18 +9,15 @@ import {
   getBraintreeClientToken,
   //processPayment,
 } from '../../apis/apiCore';
-import { emptyCart } from '../../utils/cartHelpers';
+
+// Actions
+import { emptyCart } from '../../redux/actions/cart';
 
 //Components
 import { isAuthenticated } from '../../auth';
 import { Link } from 'react-router-dom';
 
-const Checkout = ({
-  products,
-  setRun = (f) => f,
-  run = undefined,
-  cartTotal,
-}) => {
+const Checkout = ({ products, cartTotal, emptyCart }) => {
   const [data, setData] = useState({
     loading: false,
     success: false,
@@ -52,11 +50,7 @@ const Checkout = ({
   };
 
   const getTotal = () => {
-    return products.reduce((currentValue, nextValue) => {
-      return parseFloat(
-        (currentValue + nextValue.count * nextValue.price).toFixed(2)
-      );
-    }, 0);
+    return parseFloat(cartTotal).toFixed(2);
   };
 
   const showCheckout = () => {
@@ -83,13 +77,10 @@ const Checkout = ({
 
     createOrder(userId, token, createOrderData)
       .then((response) => {
-        emptyCart(() => {
-          setRun(!run); // run useEffect in parent Cart
-          console.log('order success and empty cart');
-          setData({
-            loading: false,
-            success: true,
-          });
+        emptyCart();
+        setData({
+          loading: false,
+          success: true,
         });
       })
       .catch((error) => {
@@ -218,10 +209,9 @@ const Checkout = ({
 
   return (
     <div>
-      <p className="d-flex">
-        {/* <span>Cart Total:</span>&nbsp;<span>&euro;{getTotal(products)}</span> */}
+      <p className="d-flex" style={{ fontWeight: 'bold' }}>
         <span>Cart Total:</span>
-        <span>{cartTotal}</span>
+        <span>&euro;{parseFloat(cartTotal).toFixed(2)}</span>
       </p>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
@@ -231,4 +221,8 @@ const Checkout = ({
   );
 };
 
-export default Checkout;
+const mapDispatchToProps = (dispatch) => ({
+  emptyCart: () => dispatch(emptyCart()),
+});
+
+export default connect(null, mapDispatchToProps)(Checkout);

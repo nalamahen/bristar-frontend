@@ -194,6 +194,24 @@ select:focus {
 
 /* Checkout Item */
 
+.checkout-container {
+  display: flex;
+}
+
+@media only screen and (max-width: 539px) {
+  .checkout-container {
+    flex-direction: column;
+  }
+}
+
+.checkout-item {
+  display: flex;
+}
+
+.checkout-item img {
+  height: 200px;
+}
+
 .checkout-item-quantity {
   display: flex;
 }
@@ -206,3 +224,13 @@ select:focus {
 .checkout-item-quantity .value {
   margin: 0 10px;
 }
+
+.checkout-item-remove {
+  cursor: pointer;
+}
+
+.checkout-item-remove:hover {
+  text-decoration: underline;
+}
+
+/* ****************************** */

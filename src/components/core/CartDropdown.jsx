@@ -2,9 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-//Helper methods
-import { getCart } from '../../utils/cartHelpers';
-
 // Actions
 import { toggleCartHidden } from '../../redux/actions/cart';
 import { selectCartItems } from '../../redux/selectors/cart';

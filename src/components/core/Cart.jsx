@@ -1,16 +1,12 @@
 // Libs
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-//Helper methods
-import { getCart } from '../../utils/cartHelpers';
-
 import { selectCartItems, selectCartTotal } from '../../redux/selectors/cart';
 
 //Components
-import Card from './Card';
 import Layout from './Layout';
 import Checkout from './Checkout';
 import CheckoutItem from './CheckoutItem';
@@ -23,19 +19,10 @@ const Cart = ({ cartItems, cartTotal }) => {
   const showItems = (cartItems) => {
     return (
       <div>
-        <h2>Your cart has {`${cartItems.length} items`}</h2>
+        <h2 className="mb-4">Your cart has {`${cartItems.length} items`}</h2>
         <hr />
         {cartItems.map((item) => (
-          // <Card
-          //   key={product._id}
-          //   product={product}
-          //   showAddToCartButton={false}
-          //   cartUpdate={true}
-          //   showRemoveProductButton={true}
-          //   setRun={setRun}
-          //   run={run}
-          // />
-          <CheckoutItem item={item} />
+          <CheckoutItem key={item._id} item={item} />
         ))}
       </div>
     );
@@ -56,14 +43,16 @@ const Cart = ({ cartItems, cartTotal }) => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            <div className="col-6">
-              {cartItems.length > 0 ? showItems(cartItems) : noItemsMessage()}
-            </div>
+            <div className="checkout-container">
+              <div className="col-lg-8">
+                {cartItems.length > 0 ? showItems(cartItems) : noItemsMessage()}
+              </div>
 
-            <div className="col-6">
-              <h2 className="mb-4">Your cart summary</h2>
-              <hr />
-              <Checkout products={cartItems} cartTotal={cartTotal} />
+              <div className="col-lg-8">
+                <h2 className="mb-4">Your cart summary</h2>
+                <hr />
+                <Checkout products={cartItems} cartTotal={cartTotal} />
+              </div>
             </div>
           </div>
         </div>

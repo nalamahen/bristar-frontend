@@ -8,7 +8,6 @@ import { signout, isAuthenticated } from '../../auth';
 import { toggleCartHidden } from '../../redux/actions/cart';
 import {
   selectCartItemsCount,
-  selectCartItems,
   selectCartHidden,
 } from '../../redux/selectors/cart';
 

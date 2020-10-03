@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
   addCartItem,
@@ -7,22 +8,36 @@ import {
   clearItemFromCart,
 } from '../../redux/actions/cart';
 
+import { getImageUrl } from '../../utils/cartHelpers';
+
 const CheckoutItem = ({ item, addItem, removeItem, clearItem }) => {
   return (
-    <div>
-      <div>{item.name}</div>
-      <di className="checkout-item-quantity">
-        <div onClick={() => removeItem(item)} className="arrow">
-          &#10094;
+    <>
+      <div className="checkout-item">
+        <div className="checkout-item-image">
+          <Link to={`/product/${item._id}`}>
+            <img src={getImageUrl(item)} alt="item.name" />
+          </Link>
         </div>
-        <span className="value">{item.count}</span>
-        <div onClick={() => addItem(item)} className="arrow">
-          &#10095;
+        <div className="checkout-item-details">
+          <div>{item.name}</div>
+          <div className="checkout-item-quantity">
+            <div onClick={() => removeItem(item)} className="arrow">
+              &#10094;
+            </div>
+            <span className="value">{item.count}</span>
+            <div onClick={() => addItem(item)} className="arrow">
+              &#10095;
+            </div>
+          </div>
+          <div>&euro;{item.price}</div>
+          <div className="checkout-item-remove" onClick={() => clearItem(item)}>
+            Remove
+          </div>
         </div>
-        <div>{item.price}</div>
-        <div onClick={() => clearItem(item)}>Remove Iitem</div>
-      </di>
-    </div>
+      </div>
+      <hr />
+    </>
   );
 };
 

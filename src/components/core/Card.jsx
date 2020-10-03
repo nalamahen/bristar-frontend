@@ -1,106 +1,15 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import {
-  addItem,
-  getImageBackground,
-  removeItem,
-  updateItem,
-} from '../../utils/cartHelpers';
+import { getImageBackground } from '../../utils/cartHelpers';
 
 //Actions
-import { addCartItem, clearItemFromCart } from '../../redux/actions/cart';
+import { addCartItem } from '../../redux/actions/cart';
 
-const Card = ({
-  product,
-  showProductViewLink = true,
-  showAddToCartButton = true,
-  cartUpdate = false,
-  showRemoveProductButton = false,
-  promotion = '',
-  displayColumn = 4,
-  setRun = (f) => f,
-  run = undefined,
-  // changeCartSize
-
-  addCartItem,
-  clearItemFromCart,
-}) => {
-  const [redirect, setRedirect] = useState(false);
-  const [count, setCount] = useState(product.count);
-
-  const addToCart = () => {
-    // console.log('added');
-    addItem(product, setRedirect(false));
-
-    addCartItem(product);
-  };
-
-  const shouldRedirect = (redirect) => {
-    if (redirect) {
-      return <Redirect to="/cart" />;
-    }
-  };
-
-  // const showStock = (quantity) => {
-  //   return quantity > 0 ? (
-  //     <span className="badge badge-primary badge-pill">In Stock </span>
-  //   ) : (
-  //     <span className="badge badge-primary badge-pill">Out of Stock </span>
-  //   );
-  // };
-
-  const handleChange = (productId) => (event) => {
-    setRun(!run); // run useEffect in parent Cart
-    setCount(event.target.value < 1 ? 1 : event.target.value);
-    if (event.target.value >= 1) {
-      updateItem(productId, event.target.value);
-    }
-  };
-
-  const showCartUpdateOptions = (cartUpdate) => {
-    return (
-      cartUpdate && (
-        <div>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend"></div>
-            <input
-              type="number"
-              className="form-control"
-              value={count}
-              onChange={handleChange(product._id)}
-            />
-          </div>
-        </div>
-      )
-    );
-  };
-  const showRemoveButton = (showRemoveProductButton) => {
-    return (
-      showRemoveProductButton && (
-        <button
-          onClick={() => {
-            clearItemFromCart(product);
-            removeItem(product._id);
-            setRun(!run); // run useEffect in parent Cart
-          }}
-          className="btn btn-outline-danger mt-2 mb-2"
-        >
-          Remove Product
-        </button>
-      )
-    );
-  };
-
-  /*
-  const getImageUrl = (product) => {;
-    return { backgroundImage: `url(${API}/product/photo/${product._id})` };
-  };
-*/
+const Card = ({ product, promotion = '', displayColumn = 4, addCartItem }) => {
   return (
     <div className={`col-md-${displayColumn} d-flex`}>
-      {shouldRedirect(redirect)}
       <div className="product ftco-animate fadeInUp ftco-animated">
         <div
           className="img d-flex align-items-center justify-content-center"
@@ -108,23 +17,20 @@ const Card = ({
         >
           <div className="desc">
             <p className="meta-prod d-flex">
-              {showAddToCartButton && (
-                <Link
-                  to="#"
-                  className="d-flex align-items-center justify-content-center"
-                  onClick={addToCart}
-                >
-                  <span className="flaticon-shopping-bag"></span>
-                </Link>
-              )}
-              {showProductViewLink && (
-                <Link
-                  to={`/product/${product._id}`}
-                  className="d-flex align-items-center justify-content-center"
-                >
-                  <span className="flaticon-visibility"></span>
-                </Link>
-              )}
+              <Link
+                to="#"
+                className="d-flex align-items-center justify-content-center"
+                onClick={() => addCartItem(product)}
+              >
+                <span className="flaticon-shopping-bag"></span>
+              </Link>
+
+              <Link
+                to={`/product/${product._id}`}
+                className="d-flex align-items-center justify-content-center"
+              >
+                <span className="flaticon-visibility"></span>
+              </Link>
             </p>
           </div>
         </div>
@@ -140,8 +46,6 @@ const Card = ({
             </span>
           </p>
         </div>
-        {showRemoveButton(showRemoveProductButton)}
-        {showCartUpdateOptions(cartUpdate)}
       </div>
     </div>
   );
@@ -149,7 +53,6 @@ const Card = ({
 
 const mapDispatchToProps = (dispatch) => ({
   addCartItem: (item) => dispatch(addCartItem(item)),
-  clearItemFromCart: (item) => dispatch(clearItemFromCart(item)),
 });
 
 export default connect(null, mapDispatchToProps)(Card);
