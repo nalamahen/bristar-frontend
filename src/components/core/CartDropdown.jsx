@@ -32,7 +32,7 @@ const CartDropdown = ({ cartItems, cartTotal, dispatch }) => {
             {cartItems.map((item) => (
               <CartItem key={item._id} product={item} />
             ))}
-            <div className="cart-dropdown-total">Total: &euro;{cartTotal}</div>
+            <div className="cart-dropdown-total">Total: &euro;{parseFloat(cartTotal).toFixed(2)}</div>
           </div>
         </>
       ) : (

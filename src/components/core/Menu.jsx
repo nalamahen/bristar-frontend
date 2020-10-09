@@ -19,6 +19,7 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history, toggleCartHidden, hidden, itemCount }) => {
+  console.log('itemCount:', itemCount)
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
